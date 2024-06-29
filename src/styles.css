@@ -1,0 +1,87 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* background-image: url('./images/Bg_To_Do_List.webp');
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+main {}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#child-container {}
+
+.menu {
+    display: flex;
+    border-radius: 3px;
+    background-color: rgb(208, 255, 0);
+    color: black;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+
+}
+
+.menu button {
+    border: 0;
+    border-radius: 9px;
+    background-color: rgb(208, 255, 0);
+    color: black;
+    font-size: 29px;
+
+}
+
+#projects {
+    display: none;
+}
+
+.project-child-container {
+    display: flex;
+}
+
+.tasks {
+
+    border: 1px;
+    border-radius: 9px;
+    padding: 15px;
+    margin: 0;
+    font-size: 20px;
+    /* width: 130px; */
+}
+
+.tasks li {
+    list-style-type: none;
+    /* text-decoration: none; */
+}
+
+.tasks>div {
+    display: flex;
+    margin: 0;
+    gap: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.close  {
+    display: flex;
+    border-radius: 50%;
+    background-color: grey;
+    width: 20px;
+    height: 20px;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
