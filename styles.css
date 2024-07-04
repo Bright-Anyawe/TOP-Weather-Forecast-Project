@@ -1,0 +1,280 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 5% 20% 60% 10%;
+    grid-template-rows: 90px 200px 100px 1fr;
+    /* flex: 1; */
+
+}
+
+#formContainer {
+    grid-area: 1 / 2 / 2 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+#gifContainer {
+    /* background-color: aqua; */
+    grid-area: 2 / 2 / 3 / 3;
+    background-size: contain;
+
+    /* display: flex;
+    flex: 0.4;
+    position: relative;
+    width: 370px;
+    height: 700px; */
+}
+
+/* .gap {
+    grid-area: 3 / 1 / 4 / 2;
+
+} */
+
+#gifContainer2 {
+    grid-area: 3 / 3 / 5 / 4;
+
+}
+
+#container {
+    background-color: rgb(172, 182, 182);
+    grid-area: 2 / 3 / 6 / 4;
+
+}
+
+.gapAtEnd {
+    grid-area: 2 / 4 / 4 / 5;
+}
+
+
+.currentWeatherInfo {
+    /* display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 10px;
+    justify-content: space-between;
+    
+    */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 15px solid white;
+    border-radius: 99px 34px;
+    margin: 20px;
+}
+
+
+#form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input {
+    height: 10px;
+    width: 300px;
+    padding: 10px;
+}
+
+::placeholder {
+    font-size: 17px;
+}
+
+svg {
+    width: 50px;
+    height: 40px;
+    pointer-events: none;
+}
+
+#searchLocation:hover {
+    background-color: rgb(150, 233, 233);
+}
+
+
+.weatherAppName {
+    font-size: 19px;
+    padding: 10px
+}
+
+.currentWeatherHeader {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+
+
+}
+
+.countryEl {
+    font-size: 17px;
+
+}
+
+.weatherIconTemp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.boldTempEl {
+    font-size: 50px;
+    margin: 0;
+}
+
+
+.weatherConditionImg {
+    width: 140px;
+}
+
+.tempEl {
+
+    display: none;
+}
+
+.weatherCondition {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+}
+
+.weatherCondition p {
+    border-bottom: 1px solid white;
+    font-size: 18px;
+}
+
+#dayOne {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.dayOneWeatherHeader {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+}
+
+.dayOneWeatherConditionImg {
+    width: 140px;
+}
+
+.dayOneboldTempEl {
+    margin: 0;
+    font-size: 50px;
+}
+
+#InnerContainer {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#dayOneWeatherDetails>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid white;
+    font-size: 19px;
+}
+
+#dayTwo {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+
+.dayTwoWeatherHeader {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+}
+
+.dayTwoWeatherConditionImg {
+    width: 140px;
+}
+
+.dayTwoboldTempEl {
+    margin: 0;
+    font-size: 50px;
+}
+
+#dayTwoInnerContainer {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#dayTwoWeatherDetails>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid white;
+    font-size: 19px;
+}
+
+
+#dayThree {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 10px;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.dayThreeWeatherHeader {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+}
+
+
+.dayThreeWeatherConditionImg {
+    width: 140px;
+}
+
+.dayThreeboldTempEl {
+    margin: 0;
+    font-size: 50px;
+}
+
+#dayThreeInnerContainer {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#dayThreeWeatherDetails>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid white;
+    font-size: 19px;
+}
+
+#submitLocation {
+    font-size: 20px;
+}

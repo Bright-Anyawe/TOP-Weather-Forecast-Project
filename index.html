@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,55 +8,436 @@
     <script src="index.js" defer> </script>
     <title>Weather App</title>
 </head>
+
 <body>
     <main>
 
-<form action="" id="form">
-    <input type="text" id="input" placeholder="Enter location..">
-    <input type="submit" id="submitLocation">
-</form>
+        <section id="formContainer">
+            <div class="weatherAppName">G-weather search</div>
+            <form action="" id="form">
+                <input type="text" id="input" placeholder="Enter location..">
+                <div id="searchLocation">
+                    <svg id="searchLocation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <title>magnify</title>
+                        <path
+                            d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                    </svg>
 
-<section> 
-<div class="currentWeatherInfo"> 
-    <p class="countryEl"></p>
-    <p class="tempEl"></p>
-    <p class="windDirEl"></p>
-    <p class="windDirInDegree"></p>
-    <p class="feelLikeEl"></p>
-    <p class="weatherIconEl"></p>
-    <p class="currentWeatherHumidityEl"></p>
-    <p class="barometricPressureEl"></p>
-    <p class="currentVisibilityEl"></p>
-    <p class="currentWeatherLastUpdateEl"></p>
-    <p class="currentWeatherPrecipitationEl"></p>
+                </div> <!-- <input type="submit" id="submitLocation"> -->
+            </form>
+        </section>
 
-</div>
+        <section id="gifContainer">
+            <!-- <div>What a day gif</div> -->
+            <img class="secondImg" src="#" alt="">
+        </section>
 
-<div id="DayOne">
-    <p class="sunrise"></p>
-    <p class="sunset"></p>
-    <p class="moonrise"></p>
-    <p class="moonset"></p>
-    <p class="date"></p>
-    <p class="avgHumidity"></p>
-    <p class="avgTemp"></p>
-    <p class="avgVisi"></p>
-    <p class="icon"></p>
-    <p class="daily_chance_of_rain"></p>
-    <p class="daily_chance_of_snow"></p>
-    <p class="daily_will_it_rain"></p>
-    <p class="daily_will_it_snow"></p>
-    <p class="daily_chance_of_rain"></p>
-    <p class="maxwind_mph"></p>
-    <p class="totalprecip_mm"></p>
-    <p class="totalsnow_cm"></p>
+        <!-- <section class="gap">
+
+        </section> -->
+
+        <section id="gifContainer2">
+            <!-- <img class="secondGif" src="#" alt=""> -->
+        </section>
 
 
-</div>
+        <section id="container">
 
 
-</section>
+            <div class="currentWeatherInfo">
+                <div class="currentWeatherHeader">
+                    <h3>Current Weather</h3>
+                    <h4 class="countryEl"></h4>
+                </div>
+
+                <div class="weatherCondition">
+                    <div class="weatherIconTemp">
+
+
+                        <div class="weatherIconContainer">
+                            <img class="weatherConditionImg" src="" alt="">
+                        </div>
+
+                        <div class="weatherIconEl">
+                            <h3 class="boldTempEl"></h3>
+                        </div>
+                    </div>
+
+                    <div id="currentWeatherData">
+
+                        <div>
+                            <p class="tempEl"></p>
+                            <span class="tempNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="windDirEl"></p>
+                            <span class="windDirNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="windDirInDegree"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="feelLikeEl"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="currentWeatherHumidityEl"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="barometricPressureEl"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="currentVisibilityEl"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                        <div>
+                            <p class="currentWeatherPrecipitationEl"></p>
+                            <span class="windDirInDegreeNumber"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="dayOne">
+
+                <div class="dayOneWeatherHeader">
+                    <h3 class='day'></h3>
+                    <h4 class="month-year"></h4>
+                </div>
+
+                <div id="InnerContainer">
+
+                    <div class="weatherIconTemp">
+
+                        <div class="dayOneWeatherIconContainer">
+                            <img class="dayOneWeatherConditionImg" src="" alt="">
+                        </div>
+
+                        <div class="dayOneweatherIconEl">
+                            <h3 class="dayOneboldTempEl"></h3>
+                        </div>
+
+                    </div>
+
+                    <div id="dayOneWeatherDetails">
+                        <div id="sunRiseContainer">
+                            <p class="sunRise"></p>
+                            <span class="sunRiseNumber"></span>
+
+                        </div>
+
+                        <div id="sunSetContainer">
+                            <p class="sunSet"></p>
+                            <span class="sunSetNumber"></span>
+                        </div>
+
+                        <div id="moonRiseContainer">
+                            <p class="moonRise"></p>
+                            <span class="moonRiseNumber"></span>
+                        </div>
+
+
+                        <div id="moonSetContainer">
+                            <p class="moonSet"></p>
+                            <span class="moonSetNumber"></span>
+                        </div>
+
+                        <div id="averageHumidityContainer">
+                            <p class="averageHumidity"></p>
+                            <span class="averageHumidityNumber"></span>
+                        </div>
+
+                        <div id="averageTemperatureContainer">
+                            <p class="averageTemperature"></p>
+                            <span class="averageTemperatureNumber"></span>
+                        </div>
+
+                        <div id="averageVisibilityContainer">
+                            <p class="averageVisibility"></p>
+                            <span class="averageVisibilityNumber"></span>
+
+                        </div>
+
+                        <div id="dailyChanceOfRainContainer">
+                            <p class="dailyChanceOfRain"></p>
+                            <span class="dailyChanceOfRainNumber"></span>
+
+                        </div>
+
+                        <div id="dailyChanceOfSnowContainer">
+                            <p class="dailyChanceOfSnow"></p>
+                            <span class="dailyChanceOfSnowNumber"></span>
+
+                        </div>
+
+                        <div id="dailyWillItRainContainer">
+                            <p class="dailyWillItRain"></p>
+                            <span class="dailyWillItRainNumber"></span>
+
+                        </div>
+
+                        <div id="dailyWillItSnowContainer">
+                            <p class="dailyWillItSnow"></p>
+                            <span class="dailyWillItSnowNumber"></span>
+
+                        </div>
+
+                        <div id="totalPrecipContainer">
+                            <p class="totalPrecip"></p>
+                            <span class="totalPrecipNumber"></span>
+                        </div>
+
+                        <div id="totalprecip_mmContainer">
+                            <p class="totalprecip_mm"></p>
+                            <span class="totalprecip_mmNumber"></span>
+                        </div>
+
+                        <div id="totalsnow_cmContainer">
+                            <p class="totalsnow_cm"></p>
+                            <span class="totalsnow_cmNumber"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="dayTwo">
+
+                <div class="dayTwoWeatherHeader">
+                    <h3 class='dayTwo'></h3>
+                    <h4 class="dayTwoMonth-year"></h4>
+                </div>
+
+                <div id="dayTwoInnerContainer">
+
+                    <div class="dayTwoWeatherIconTemp">
+
+                        <div class="dayTwoWeatherIconContainer">
+                            <img class="dayTwoWeatherConditionImg" src="" alt="">
+                        </div>
+
+                        <div class="dayTwoweatherIconEl">
+                            <h3 class="dayTwoboldTempEl"></h3>
+                        </div>
+
+                    </div>
+
+                    <div id="dayTwoWeatherDetails">
+                        <div id="dayTwosunRiseContainer">
+                            <p class="dayTwosunRise"></p>
+                            <span class="dayTwosunRiseNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwosunSetContainer">
+                            <p class="dayTwosunSet"></p>
+                            <span class="dayTwosunSetNumber"></span>
+                        </div>
+
+                        <div id="dayTwomoonRiseContainer">
+                            <p class="dayTwomoonRise"></p>
+                            <span class="dayTwomoonRiseNumber"></span>
+                        </div>
+
+
+                        <div id="dayTwomoonSetContainer">
+                            <p class="dayTwomoonSet"></p>
+                            <span class="dayTwomoonSetNumber"></span>
+                        </div>
+
+                        <div id="dayTwoaverageHumidityContainer">
+                            <p class="dayTwoaverageHumidity"></p>
+                            <span class="dayTwoaverageHumidityNumber"></span>
+                        </div>
+
+                        <div id="dayTwoaverageTemperatureContainer">
+                            <p class="dayTwoaverageTemperature"></p>
+                            <span class="dayTwoaverageTemperatureNumber"></span>
+                        </div>
+
+                        <div id="dayTwoaverageVisibilityContainer">
+                            <p class="dayTwoaverageVisibility"></p>
+                            <span class="dayTwoaverageVisibilityNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwodailyChanceOfRainContainer">
+                            <p class="dayTwodailyChanceOfRain"></p>
+                            <span class="dayTwodailyChanceOfRainNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwodailyChanceOfSnowContainer">
+                            <p class="dayTwodailyChanceOfSnow"></p>
+                            <span class="dayTwodailyChanceOfSnowNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwodailyWillItRainContainer">
+                            <p class="dayTwodailyWillItRain"></p>
+                            <span class="dayTwodailyWillItRainNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwodailyWillItSnowContainer">
+                            <p class="dayTwodailyWillItSnow"></p>
+                            <span class="dayTwodailyWillItSnowNumber"></span>
+
+                        </div>
+
+                        <div id="dayTwototalPrecipContainer">
+                            <p class="dayTwototalPrecip"></p>
+                            <span class="dayTwototalPrecipNumber"></span>
+                        </div>
+
+                        <div id="dayTwototalprecip_mmContainer">
+                            <p class="dayTwototalprecip_mm"></p>
+                            <span class="dayTwototalprecip_mmNumber"></span>
+                        </div>
+
+                        <div id="dayTwototalsnow_cmContainer">
+                            <p class="dayTwototalsnow_cm"></p>
+                            <span class="dayTwototalsnow_cmNumber"></span>
+                        </div>
+
+                    </div>
+                    <!-- <p class="currentWeatherPrecipitationEl"></p>
+            
+                                <p class="icon"></p> -->
+
+                </div>
+
+
+            </div>
+
+            <div id="dayThree">
+
+                <div class="dayThreeWeatherHeader">
+                    <h3 class='dayThree'></h3>
+                    <h4 class="dayThreeMonth-year"></h4>
+                </div>
+
+                <div id="dayThreeInnerContainer">
+
+                    <div class="dayThreeWeatherIconTemp">
+
+                        <div class="dayThreeWeatherIconContainer">
+                            <img class="dayThreeWeatherConditionImg" src="" alt="">
+                        </div>
+
+                        <div class="dayThreeweatherIconEl">
+                            <h3 class="dayThreeboldTempEl"></h3>
+                        </div>
+
+                    </div>
+
+                    <div id="dayThreeWeatherDetails">
+                        <div id="dayThreesunRiseContainer">
+                            <p class="dayThreesunRise"></p>
+                            <span class="dayThreesunRiseNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreesunSetContainer">
+                            <p class="dayThreesunSet"></p>
+                            <span class="dayThreesunSetNumber"></span>
+                        </div>
+
+                        <div id="dayThreemoonRiseContainer">
+                            <p class="dayThreemoonRise"></p>
+                            <span class="dayThreemoonRiseNumber"></span>
+                        </div>
+
+
+                        <div id="dayThreemoonSetContainer">
+                            <p class="dayThreemoonSet"></p>
+                            <span class="dayThreemoonSetNumber"></span>
+                        </div>
+
+                        <div id="dayThreeaverageHumidityContainer">
+                            <p class="dayThreeaverageHumidity"></p>
+                            <span class="dayThreeaverageHumidityNumber"></span>
+                        </div>
+
+                        <div id="dayThreeaverageTemperatureContainer">
+                            <p class="dayThreeaverageTemperature"></p>
+                            <span class="dayThreeaverageTemperatureNumber"></span>
+                        </div>
+
+                        <div id="dayThreeaverageVisibilityContainer">
+                            <p class="dayThreeaverageVisibility"></p>
+                            <span class="dayThreeaverageVisibilityNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreedailyChanceOfRainContainer">
+                            <p class="dayThreedailyChanceOfRain"></p>
+                            <span class="dayThreedailyChanceOfRainNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreedailyChanceOfSnowContainer">
+                            <p class="dayThreedailyChanceOfSnow"></p>
+                            <span class="dayThreedailyChanceOfSnowNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreedailyWillItRainContainer">
+                            <p class="dayThreedailyWillItRain"></p>
+                            <span class="dayThreedailyWillItRainNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreedailyWillItSnowContainer">
+                            <p class="dayThreedailyWillItSnow"></p>
+                            <span class="dayThreedailyWillItSnowNumber"></span>
+
+                        </div>
+
+                        <div id="dayThreetotalPrecipContainer">
+                            <p class="dayThreetotalPrecip"></p>
+                            <span class="dayThreetotalPrecipNumber"></span>
+                        </div>
+
+                        <div id="dayThreetotalprecip_mmContainer">
+                            <p class="dayThreetotalprecip_mm"></p>
+                            <span class="dayThreetotalprecip_mmNumber"></span>
+                        </div>
+
+                        <div id="dayThreetotalsnow_cmContainer">
+                            <p class="dayThreetotalsnow_cm"></p>
+                            <span class="dayThreetotalsnow_cmNumber"></span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="gapAtEnd">
+
+        </section>
     </main>
-    
+
 </body>
+
 </html>
