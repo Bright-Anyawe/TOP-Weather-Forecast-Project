@@ -8,24 +8,48 @@ const gifContainer2 = document.querySelector("#gifContainer2");
 console.log(gifContainer);
 const submitLocationBtn = document.querySelector("#searchLocation");
 const currentWeatherInfo = document.querySelector(".currentWeatherInfo");
-
 const countryEl = document.querySelector(".countryEl");
-const temperatureEl = document.querySelector(".tempEl");
 const temperatureBoldEl = document.querySelector(".boldTempEl");
-const windDirEl = document.querySelector(".windDirEl");
-const windDirInDegreeEl = document.querySelector(".windDirInDegree");
-const feelLikeEl = document.querySelector(".feelLikeEl");
+
+const dewPointTextEl = document.querySelector(".dewPointEl");
+const dewPointEl = document.querySelector(".dewPointElNumber");
+
+const windDirTextEl = document.querySelector(".windDirEl");
+const windDirEl = document.querySelector(".windDirNumber");
+
+// const windDirInDegreeTextEl = document.querySelector(".windDirInDegree");
+// const windDirInDegreeEl = document.querySelector(".windDirInDegreeNumber");
+
+const feelLikeTextEl = document.querySelector(".feelLikeEl");
+const feelLikeEl = document.querySelector(".feelLikeElNumber");
+
 const weatherIconEl = document.querySelector(".weatherConditionImg");
-const currentWeatherHumidityEl = document.querySelector(
+
+const currentWeatherHumidityTextEl = document.querySelector(
   ".currentWeatherHumidityEl"
 );
-const barometricPressureEl = document.querySelector(".barometricPressureEl");
-const currentVisibilityEl = document.querySelector(".currentVisibilityEl");
-const currentWeatherLastUpdateEl = document.querySelector(
-  ".currentWeatherLastUpdateEl"
+const currentWeatherHumidityEl = document.querySelector(
+  ".currentWeatherHumidityElNumber"
+);
+
+const barometricPressureTextEl = document.querySelector(".barometricPressureEl");
+const barometricPressureEl = document.querySelector(".barometricPressureElNumber");
+
+const currentVisibilityTextEl = document.querySelector(".currentVisibilityEl");
+const currentVisibilityEl = document.querySelector(".currentVisibilityElNumber");
+
+// const currentWeatherLastUpdateTextEl = document.querySelector(
+//   ".currentWeatherLastUpdateElNumber"
+// );
+// const currentWeatherLastUpdateEl = document.querySelector(
+//   ".currentWeatherLastUpdateElNumber"
+// );
+
+const currentWeatherPrecipitationTextEl = document.querySelector(
+  ".currentWeatherPrecipitationEl"
 );
 const currentWeatherPrecipitationEl = document.querySelector(
-  ".currentWeatherPrecipitationEl"
+  ".currentWeatherPrecipitationElNumber"
 );
 //Get user Input
 function getUserInput() {
@@ -107,6 +131,7 @@ function getCurrentWeatherConditon() {
     const country = location.location.country;
     const locationName = location.location.name;
 
+    const dewPoint = location.current.dewpoint_c
     const temperature = location.current.temp_c;
     const windDirection = location.current.wind_dir;
     const windDirInDegree = location.current.wind_degree;
@@ -153,24 +178,40 @@ function getCurrentWeatherConditon() {
     const currentWeatherObj = location.current;
     console.log(currentWeatherObj);
     const spanEl = document.createElement("span");
-
-    countryEl.textContent = `${country}-${locationName}:`;
-    temperatureEl.textContent = ` temp in °C: ${temperature}°C`;
     temperatureBoldEl.textContent = `${temperature}°`;
     spanEl.textContent = "c";
     temperatureBoldEl.appendChild(spanEl);
 
-    windDirEl.textContent = ` wind dir: ${windDirection}°`;
-    windDirInDegreeEl.textContent = ` wind direction in °C : ${windDirInDegree}°`;
-    feelLikeEl.textContent = `feel like conditon in °C: ${feelLikeCondition}°`;
+    countryEl.textContent = `${country}-${locationName}:`;
+
+    dewPointTextEl.textContent = "Dewpoint:";
+    dewPointEl.textContent = `${dewPoint}°c`;
+
+    windDirTextEl.textContent = "Wind direction:";
+    windDirEl.textContent = `${windDirection}°`;
+
+    // windDirInDegreeTextEl.textContent = "Wind direction:";
+    // windDirInDegreeEl.textContent = `${windDirInDegree}°c`;
+
+    feelLikeTextEl.textContent = "Feel Like:";
+    feelLikeEl.textContent = `${feelLikeCondition}°c`;
+    
     weatherIconEl.src = weatherIcon;
     weatherIconEl.alt = weatherIconText;
 
-    currentWeatherHumidityEl.textContent = `humidity: ${currentWeatherHumidity}%`;
-    barometricPressureEl.textContent = ` barometric pressure: ${BarometricPressure}mb`;
-    currentVisibilityEl.textContent = ` visibility in km: ${currentVisibility}km`;
+    currentWeatherHumidityTextEl.textContent = "Humidity:";
+    currentWeatherHumidityEl.textContent = `${currentWeatherHumidity}%`;
+
+    barometricPressureTextEl.textContent = "Barometric_pressure:";
+    barometricPressureEl.textContent = `${BarometricPressure}mb`;
+
+    currentVisibilityTextEl.textContent = "Visibility:";
+    currentVisibilityEl.textContent = ` ${currentVisibility}km`;
+
     // currentWeatherLastUpdateEl.textContent = ` weather lastly update condition: ${currentWeatherLastUpdate}`;
-    currentWeatherPrecipitationEl.textContent = `precipitation  in mm: ${currentWeatherPrecipitation}mm`;
+    currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
+    currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
+
   });
 }
 
@@ -270,12 +311,6 @@ function getDayOneWeatherCondition() {
     const fullDayInWeeks = dateObj.toLocaleDateString("en-Us", options);
     console.log(fullDayInWeeks);
 
-    // let day2 = foreCastDay[1];
-    // let day3 = foreCastDay[2];
-    // let day4 = foreCastDay[3];
-    // let day5 = foreCastDay[4];
-    // let day6 = foreCastDay[5];
-    // let day7 = foreCastDay[6];
     const sunRise = day1.astro.sunrise;
     const sunSet = day1.astro.sunset;
     const moonRise = day1.astro.moonrise;
