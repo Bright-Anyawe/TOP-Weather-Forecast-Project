@@ -1,5 +1,6 @@
+const container = document.querySelector("#container")
+
 const form = document.querySelector("#form");
-console.log(form);
 let locationInputField = document.querySelector("#input");
 const img = document.querySelector("img");
 const gifContainer = document.querySelector("#gifContainer");
@@ -9,7 +10,6 @@ const gifContainer4 = document.querySelector("#gifContainer4");
 const gifContainer5 = document.querySelector("#gifContainer5");
 const gifContainer6 = document.querySelector("#gifContainer6");
 
-console.log(gifContainer);
 const submitLocationBtn = document.querySelector("#searchLocation");
 const currentWeatherInfo = document.querySelector(".currentWeatherInfo");
 const countryEl = document.querySelector(".countryEl");
@@ -72,30 +72,31 @@ locationInputField.addEventListener("input", getUserInput);
 //Get Location current weather condition From Api
 async function getLocation() {
   const userLocation = getUserInput();
-  console.log(userLocation);
-
-  // try {
+if(userLocation) {
+  
+  try {
   const response = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
     { mode: "cors" }
   );
   const location = await response.json();
-  console.log(response);
-  console.log(...response.headers);
-  console.log(location);
+  
 
   return location;
 
-  // } catch {
-  console.log("Location not found!");
-  // }
+  } catch (err) {
+  alert("Location not found!");
+  }
+}
+else {
+  alert("You've not entered any value")
+}
 }
 
 //Get current weather info
 function getCurrentWeatherConditon() {
-  const weatherConditon = getLocation();
+  const weatherConditon = getLocation()
   weatherConditon.then((location) => {
-    console.log(location);
 
     const country = location.location.country;
     const locationName = location.location.name;
@@ -137,8 +138,6 @@ function getCurrentWeatherConditon() {
           return response.json();
         })
         .then(function (response) {
-          console.log(response);
-          // img.src = response.data.images.original.url;
           gifContainer.style.backgroundImage = `url("${response.data.images.original.url}")`;
           gifContainer2.style.backgroundImage = `url("${response.data.images.original.url}")`;
           gifContainer3.style.backgroundImage = `url("${response.data.images.original.url}")`;
@@ -148,12 +147,11 @@ function getCurrentWeatherConditon() {
         });
     }
 
-    // const foreCastDay = location.forecast.forecastday;
-    // console.log(foreCastDay);
-
+    //Get current weather data object
     const currentWeatherObj = location.current;
     console.log(currentWeatherObj);
     const spanEl = document.createElement("span");
+
     temperatureBoldEl.textContent = `${temperature}°`;
     spanEl.textContent = "c";
     temperatureBoldEl.appendChild(spanEl);
@@ -165,9 +163,6 @@ function getCurrentWeatherConditon() {
 
     windDirTextEl.textContent = "Wind direction:";
     windDirEl.textContent = `${windDirection}°`;
-
-    // windDirInDegreeTextEl.textContent = "Wind direction:";
-    // windDirInDegreeEl.textContent = `${windDirInDegree}°c`;
 
     feelLikeTextEl.textContent = "Feel Like:";
     feelLikeEl.textContent = `${feelLikeCondition}°c`;
@@ -184,7 +179,6 @@ function getCurrentWeatherConditon() {
     currentVisibilityTextEl.textContent = "Visibility:";
     currentVisibilityEl.textContent = ` ${currentVisibility}km`;
 
-    // currentWeatherLastUpdateEl.textContent = ` weather lastly update condition: ${currentWeatherLastUpdate}`;
     currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
     currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
   });
@@ -295,12 +289,11 @@ function getDayOneWeatherCondition() {
     const averageTempereture = day1.day.avgtemp_c;
     const averageVisibility = day1.day.avgvis_km;
     const weatherIcon = day1.day.condition.icon;
-    const weatherText = day1.day.condition.text;
+    const weatherIconText = day1.day.condition.text;
     const dailyChanceOfRain = day1.day.daily_chance_of_rain;
     const dailyChanceOfSnow = day1.day.daily_chance_of_snow;
     const dailyWillItRain = day1.day.daily_will_it_rain;
-    const dailyWillItSnow = day1.day.daily_will_it_snow;
-    const totalPrecip = day1.day.totalprecip_mm;
+
     let day1Hours = day1.hour;
     console.log(day1Hours);
 
@@ -340,20 +333,13 @@ function getDayOneWeatherCondition() {
     dayEl.textContent = day;
     monthAndYearEl.textContent = fullDayInWeeks;
     dayOneWeatherConditionImg.src = weatherIcon;
+    dayOneWeatherConditionImg.alt = weatherIconText;
+
     dayOneboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayOneboldTempEl.appendChild(spanEl);
     console.log(weatherIcon);
 
-    // for(hour in day1Hours) {
-    //   console.log(hour)
-    //   let dayHour = hour;
-    //   console.log(dayHour)
-    // }
-
-    // currentWeatherInfo.appendChild(countryEl)
-    // currentWeatherInfo.appendChild(countryEl)
-    // console.log(temperature);
   });
 }
 
@@ -432,15 +418,6 @@ function getDayTwoWeatherCondition() {
     ".dayTwodailyWillItSnow"
   );
 
-  const totalPrecipEl = document.querySelector(".dayTwototalPrecipNumber");
-  const totalPrecipTextEl = document.querySelector(".dayTwototalPrecip");
-
-  const currentWeatherPrecipitationEl = document.querySelector(
-    ".dayTwocurrentWeatherPrecipitationElNumber"
-  );
-  const currentWeatherPrecipitationTextEl = document.querySelector(
-    ".dayTwocurrentWeatherPrecipitationEl"
-  );
   const spanEl = document.createElement("span");
 
   const weatherConditon = getLocation();
@@ -486,7 +463,7 @@ function getDayTwoWeatherCondition() {
     const averageTempereture = day2.day.avgtemp_c;
     const averageVisibility = day2.day.avgvis_km;
     const weatherIcon = day2.day.condition.icon;
-    const weatherText = day2.day.condition.text;
+    const weatherIconText = day2.day.condition.text;
     const dailyChanceOfRain = day2.day.daily_chance_of_rain;
     const dailyChanceOfSnow = day2.day.daily_chance_of_snow;
     const dailyWillItRain = day2.day.daily_will_it_rain;
@@ -532,6 +509,7 @@ function getDayTwoWeatherCondition() {
     monthAndYearEl.textContent = fullDayInWeeks;
 
     dayTwoWeatherConditionImg.src = weatherIcon;
+    dayTwoWeatherConditionImg.alt = weatherIconText;
     dayTwoboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayTwoboldTempEl.appendChild(spanEl);
@@ -604,13 +582,7 @@ function getDayThreeWeatherCondition() {
   const dailyChanceOfSnowTextEl = document.querySelector(
     ".dayThreedailyChanceOfSnow"
   );
-  const currentWeatherHumidityTextEl = document.querySelector(
-    ".dayThreecurrentWeatherHumidityElNumber"
-  );
-  const currentWeatherHumidityEl = document.querySelector(
-    ".dayThreecurrentWeatherHumidityEl"
-  );
-  const dateEl = document.querySelector(".dayThreedate");
+  
   const dailyWillItRainEl = document.querySelector(
     ".dayThreedailyWillItRainNumber"
   );
@@ -625,28 +597,17 @@ function getDayThreeWeatherCondition() {
     ".dayThreedailyWillItSnow"
   );
 
-  const totalPrecipEl = document.querySelector(".dayThreetotalPrecipNumber");
-  const totalPrecipTextEl = document.querySelector(".dayThreetotalPrecip");
-
-  const currentWeatherPrecipitationEl = document.querySelector(
-    ".dayThreecurrentWeatherPrecipitationElNumber"
-  );
-  const currentWeatherPrecipitationTextEl = document.querySelector(
-    ".dayThreecurrentWeatherPrecipitationEl"
-  );
   const spanEl = document.createElement("span");
 
   const weatherConditon = getLocation();
   weatherConditon.then((location) => {
     const foreCastDay = location.forecast.forecastday;
-    console.log(foreCastDay);
 
     //Get objects for the third week
     let day3 = foreCastDay[2];
     const date = day3.date;
 
     const dateObj = new Date(date);
-    console.log(dateObj);
 
     const options = {
       year: "numeric",
@@ -660,16 +621,9 @@ function getDayThreeWeatherCondition() {
 
     // const day = options.weekday
     const day = dateObj.toLocaleDateString("en-Us", weekday);
-    console.log(day);
     const fullDayInWeeks = dateObj.toLocaleDateString("en-Us", options);
-    console.log(fullDayInWeeks);
 
-    // let day2 = foreCastDay[1];
-    // let day3 = foreCastDay[2];
-    // let day4 = foreCastDay[3];
-    // let day5 = foreCastDay[4];
-    // let day6 = foreCastDay[5];
-    // let day7 = foreCastDay[6];
+  
     const sunRise = day3.astro.sunrise;
     const sunSet = day3.astro.sunset;
     const moonRise = day3.astro.moonrise;
@@ -679,15 +633,11 @@ function getDayThreeWeatherCondition() {
     const averageTempereture = day3.day.avgtemp_c;
     const averageVisibility = day3.day.avgvis_km;
     const weatherIcon = day3.day.condition.icon;
-    const weatherText = day3.day.condition.text;
+    const weatherIconText = day3.day.condition.text;
     const dailyChanceOfRain = day3.day.daily_chance_of_rain;
     const dailyChanceOfSnow = day3.day.daily_chance_of_snow;
     const dailyWillItRain = day3.day.daily_will_it_rain;
-    const dailyWillItSnow = day3.day.daily_will_it_snow;
-    const totalPrecip = day3.day.totalprecip_mm;
-    let day3Hours = day3.hour;
-    console.log(day3Hours);
-
+   
     sunRiseEl.textContent = sunRise;
     sunRiseTextEl.textContent = "Sunrise";
 
@@ -725,20 +675,13 @@ function getDayThreeWeatherCondition() {
     monthAndYearEl.textContent = fullDayInWeeks;
 
     dayThreeWeatherConditionImg.src = weatherIcon;
+    dayThreeWeatherConditionImg.alt = weatherIconText;
+
+
     dayThreeboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayThreeboldTempEl.appendChild(spanEl);
-    console.log(weatherIcon);
 
-    // for(hour in day1Hours) {
-    //   console.log(hour)
-    //   let dayHour = hour;
-    //   console.log(dayHour)
-    // }
-
-    // currentWeatherInfo.appendChild(countryEl)
-    // currentWeatherInfo.appendChild(countryEl)
-    // console.log(temperature);
   });
 }
 
@@ -768,6 +711,7 @@ function submitForm(event) {
   event.preventDefault();
   getUserInput();
   getLocation();
+  container.style.display = 'block';
   getCurrentWeatherConditon();
   getDayOneWeatherCondition();
   getDayTwoWeatherCondition();

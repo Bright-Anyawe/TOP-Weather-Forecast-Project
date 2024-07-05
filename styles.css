@@ -6,31 +6,34 @@ body {
 main {
     display: grid;
     grid-template-columns: 5% 10% 60% 20%;
-    grid-template-rows: 70px repeat(5, 270px);
-    gap: 2rem 0px;
-    /* flex: 1; */
+    grid-template-rows: 70px repeat(5, 295px);
+    /* gap: 2rem 0px; */
+    font-family: "Roboto", sans-serif;
+
 
 }
 
-/* @font-face {
-    font-family: "inter", Roboto";
-    src: url("./asset/Roboto/Roboto-Black.ttf") format('ttf');
+@font-face {
+    font-family: "Roboto";
+    src: url("asset/Roboto/Roboto-Black.ttf") format('ttf');
+
     font-style: normal;
     font-weight: 700;
-} */
+}
 
 #hero {
     grid-area: 1 / 1 / 2 / 7;
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    background-color: aliceblue;
+    background-color: grey;
 }
 
 #heroContent {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    color: hwb(0 93% 6%);
 }
 
 #gifContainer {
@@ -70,15 +73,10 @@ main {
 
 }
 
-/* #gifContainer7 {
-    grid-area: 6 / 4 / 7 / 5;
-
-} */
-
 #container {
     background-color: rgb(172, 182, 182);
     grid-area: 2 / 3 / 8 / 4;
-
+    display: none;
 }
 
 
@@ -103,6 +101,9 @@ main {
     width: 300px;
     padding: 10px;
     border-radius: 9px;
+    font-size: 17px;
+    border: none;
+    outline: none;
 }
 
 ::placeholder {
@@ -110,20 +111,27 @@ main {
 }
 
 svg {
-    width: 40px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     pointer-events: none;
+    fill: azure;
 }
 
 #searchLocation:hover {
-    background-color: rgb(150, 233, 233);
+    background-color: rgb(150, 233, 233, .2);
+    border-radius: 50%;
+}
+
+#searchLocation:active {
+    background-color: rgba(173, 157, 14, );
+    border-radius: 50%;
 }
 
 
 .descriptionHeader {
     font-size: 19px;
     padding: 10px;
-        font-weight: 900;
+    font-weight: 900;
 }
 
 .currentWeatherHeader {
