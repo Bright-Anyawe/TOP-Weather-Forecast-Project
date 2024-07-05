@@ -5,50 +5,80 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 5% 20% 60% 10%;
-    grid-template-rows: 90px 200px 100px 1fr;
+    grid-template-columns: 5% 10% 60% 20%;
+    grid-template-rows: 70px repeat(5, 270px);
+    gap: 2rem 0px;
     /* flex: 1; */
 
 }
 
-#formContainer {
-    grid-area: 1 / 2 / 2 / 4;
-    display: flex;
+/* @font-face {
+    font-family: "inter", Roboto";
+    src: url("./asset/Roboto/Roboto-Black.ttf") format('ttf');
+    font-style: normal;
+    font-weight: 700;
+} */
+
+#hero {
+    grid-area: 1 / 1 / 2 / 7;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     background-color: aliceblue;
 }
 
-#gifContainer {
-    /* background-color: aqua; */
-    grid-area: 2 / 2 / 3 / 3;
-    background-size: contain;
-
-    /* display: flex;
-    flex: 0.4;
-    position: relative;
-    width: 370px;
-    height: 700px; */
+#heroContent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-/* .gap {
-    grid-area: 3 / 1 / 4 / 2;
+#gifContainer {
+    grid-area: 2 / 4 / 3 / 5;
+    background-size: cover;
+}
+
+
+#gifContainer2 {
+    grid-area: 3 / 4 / 4 / 5;
+    background-size: cover;
+
+}
+
+
+#gifContainer3 {
+    grid-area: 4 / 4 / 5 / 5;
+    background-size: cover;
+
+}
+
+#gifContainer4 {
+    grid-area: 5 / 4 / 6 / 5;
+    background-size: cover;
+
+}
+
+#gifContainer5 {
+    grid-area: 6 / 4 / 7 / 5;
+    background-size: cover;
+
+}
+
+#gifContainer6 {
+    grid-area: 6 / 4 / 7 / 5;
+    background-size: cover;
+
+}
+
+/* #gifContainer7 {
+    grid-area: 6 / 4 / 7 / 5;
 
 } */
 
-#gifContainer2 {
-    grid-area: 3 / 3 / 5 / 4;
-
-}
-
 #container {
     background-color: rgb(172, 182, 182);
-    grid-area: 2 / 3 / 6 / 4;
+    grid-area: 2 / 3 / 8 / 4;
 
-}
-
-.gapAtEnd {
-    grid-area: 2 / 4 / 4 / 5;
 }
 
 
@@ -72,6 +102,7 @@ main {
     height: 10px;
     width: 300px;
     padding: 10px;
+    border-radius: 9px;
 }
 
 ::placeholder {
@@ -79,8 +110,8 @@ main {
 }
 
 svg {
-    width: 50px;
-    height: 40px;
+    width: 40px;
+    height: 30px;
     pointer-events: none;
 }
 
@@ -89,9 +120,10 @@ svg {
 }
 
 
-.weatherAppName {
+.descriptionHeader {
     font-size: 19px;
-    padding: 10px
+    padding: 10px;
+        font-weight: 900;
 }
 
 .currentWeatherHeader {
@@ -210,8 +242,8 @@ svg {
 #dayTwo {
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
-    border-radius: 10px;
+    border: 6px solid white;
+    border-radius: 60px 34px;
     justify-content: space-between;
     margin: 20px;
 }
@@ -223,13 +255,20 @@ svg {
     border-bottom: 1px solid white;
 }
 
+.dayTwoWeatherIconTemp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .dayTwoWeatherConditionImg {
-    width: 140px;
+    width: 76px;
 }
 
 .dayTwoboldTempEl {
     margin: 0;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 #dayTwoInnerContainer {
@@ -242,19 +281,23 @@ svg {
 
 #dayTwoWeatherDetails>div, #dayTwoAdditionalInfo>div {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
     font-size: 19px;
+    margin-top: 15px;
 }
 
+#dayTwoWeatherDetails>div>p, #dayTwoAdditionalInfo>div>p {
+    margin: 0;
+}
 
 #dayThree {
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
-    border-radius: 10px;
+    border: 6px solid white;
+    border-radius: 60px 34px;
     justify-content: space-between;
     margin: 20px;
 }
@@ -267,12 +310,19 @@ svg {
 
 
 .dayThreeWeatherConditionImg {
-    width: 140px;
+    width: 76px;
+}
+
+.dayThreeWeatherIconTemp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dayThreeboldTempEl {
     margin: 0;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 #dayThreeInnerContainer {
@@ -283,13 +333,18 @@ svg {
 
 }
 
-#dayThreeWeatherDetails>div {
+#dayThreeWeatherDetails>div, #dayThreeAdditionalInfo>div {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
     font-size: 19px;
+    margin-top: 15px;
+}
+
+#dayThreeWeatherDetails>div>p, #dayThreeAdditionalInfo>div>p {
+    margin: 0;
 }
 
 #submitLocation {

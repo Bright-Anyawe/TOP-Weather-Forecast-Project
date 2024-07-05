@@ -4,6 +4,10 @@ let locationInputField = document.querySelector("#input");
 const img = document.querySelector("img");
 const gifContainer = document.querySelector("#gifContainer");
 const gifContainer2 = document.querySelector("#gifContainer2");
+const gifContainer3 = document.querySelector("#gifContainer3");
+const gifContainer4 = document.querySelector("#gifContainer4");
+const gifContainer5 = document.querySelector("#gifContainer5");
+const gifContainer6 = document.querySelector("#gifContainer6");
 
 console.log(gifContainer);
 const submitLocationBtn = document.querySelector("#searchLocation");
@@ -32,11 +36,17 @@ const currentWeatherHumidityEl = document.querySelector(
   ".currentWeatherHumidityElNumber"
 );
 
-const barometricPressureTextEl = document.querySelector(".barometricPressureEl");
-const barometricPressureEl = document.querySelector(".barometricPressureElNumber");
+const barometricPressureTextEl = document.querySelector(
+  ".barometricPressureEl"
+);
+const barometricPressureEl = document.querySelector(
+  ".barometricPressureElNumber"
+);
 
 const currentVisibilityTextEl = document.querySelector(".currentVisibilityEl");
-const currentVisibilityEl = document.querySelector(".currentVisibilityElNumber");
+const currentVisibilityEl = document.querySelector(
+  ".currentVisibilityElNumber"
+);
 
 // const currentWeatherLastUpdateTextEl = document.querySelector(
 //   ".currentWeatherLastUpdateElNumber"
@@ -59,7 +69,7 @@ function getUserInput() {
 }
 locationInputField.addEventListener("input", getUserInput);
 
-//Get Location From Api
+//Get Location current weather condition From Api
 async function getLocation() {
   const userLocation = getUserInput();
   console.log(userLocation);
@@ -70,50 +80,9 @@ async function getLocation() {
     { mode: "cors" }
   );
   const location = await response.json();
+  console.log(response);
+  console.log(...response.headers);
   console.log(location);
-
-  //Get objects for the 7 weeks
-  // let day1 = foreCastDay[0];
-  // let day2 = foreCastDay[1];
-  // let day3 = foreCastDay[2];
-  // let day4 = foreCastDay[3];
-  // let day5 = foreCastDay[4];
-  // let day6 = foreCastDay[5];
-  // let day7 = foreCastDay[6];
-
-  // console.log(day1)
-  // console.log(day1.astro.sunrise)
-  // console.log(day1.astro.sunset)
-  // console.log(day1.astro.moonrise)
-  // console.log(day1.astro.moonset)
-  // console.log(day1.date)
-  // console.log(day1.day.avghumidity)
-  // console.log(day1.day.avgtemp_c)
-  // console.log(day1.day.avgvis_km)
-  // console.log(day1.day.condition.icon)
-  // console.log(day1.day.condition.text)
-
-  // console.log(day1.day.daily_chance_of_rain)
-  // console.log(day1.day.daily_chance_of_snow)
-  // console.log(day1.day.daily_will_it_rain)
-  // console.log(day1.day.daily_will_it_snow)
-  // console.log(day1.day.maxtemp_c)
-  // console.log(day1.day.maxwind_mph)
-  // console.log(day1.day.totalprecip_mm)
-  // console.log(day1.day.totalsnow_cm)
-  // console.log(day1.hour)
-  // let day1Hours = day1.hour;
-  // console.log(day1Hours);
-
-  // for(hour in day1Hours) {
-  //   console.log(hour)
-  //   let dayHour = hour;
-  //   console.log(dayHour)
-  // }
-
-  // currentWeatherInfo.appendChild(countryEl)
-  // currentWeatherInfo.appendChild(countryEl)
-  // console.log(temperature);
 
   return location;
 
@@ -131,10 +100,9 @@ function getCurrentWeatherConditon() {
     const country = location.location.country;
     const locationName = location.location.name;
 
-    const dewPoint = location.current.dewpoint_c
+    const dewPoint = location.current.dewpoint_c;
     const temperature = location.current.temp_c;
     const windDirection = location.current.wind_dir;
-    const windDirInDegree = location.current.wind_degree;
     const feelLikeCondition = location.current.feelslike_c;
     const weatherIcon = location.current.condition.icon;
     const weatherIconText = location.current.condition.text;
@@ -143,7 +111,7 @@ function getCurrentWeatherConditon() {
     const currentVisibility = location.current.vis_km;
     const currentWeatherPrecipitation = location.current.precip_mm;
 
-    if (temperature <= 20) {
+    if (temperature <= dewPoint) {
       fetch(
         `https://api.giphy.com/v1/gifs/translate?api_key=xUGeBWKikoUF1sOZRB6a37IK2KhrYt3e&s=rainy weather`,
         { mode: "cors" }
@@ -155,8 +123,12 @@ function getCurrentWeatherConditon() {
           // img.src = response.data.images.original.url;
           gifContainer.style.backgroundImage = `url("${response.data.images.original.url}")`;
           gifContainer2.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer3.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer4.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer5.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer6.style.backgroundImage = `url("${response.data.images.original.url}")`;
         });
-    } else if (temperature > 20) {
+    } else if (temperature > dewPoint) {
       fetch(
         `https://api.giphy.com/v1/gifs/translate?api_key=xUGeBWKikoUF1sOZRB6a37IK2KhrYt3e&s=sunny weather`,
         { mode: "cors" }
@@ -169,6 +141,10 @@ function getCurrentWeatherConditon() {
           // img.src = response.data.images.original.url;
           gifContainer.style.backgroundImage = `url("${response.data.images.original.url}")`;
           gifContainer2.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer3.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer4.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer5.style.backgroundImage = `url("${response.data.images.original.url}")`;
+          gifContainer6.style.backgroundImage = `url("${response.data.images.original.url}")`;
         });
     }
 
@@ -195,7 +171,7 @@ function getCurrentWeatherConditon() {
 
     feelLikeTextEl.textContent = "Feel Like:";
     feelLikeEl.textContent = `${feelLikeCondition}°c`;
-    
+
     weatherIconEl.src = weatherIcon;
     weatherIconEl.alt = weatherIconText;
 
@@ -211,7 +187,6 @@ function getCurrentWeatherConditon() {
     // currentWeatherLastUpdateEl.textContent = ` weather lastly update condition: ${currentWeatherLastUpdate}`;
     currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
     currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
-
   });
 }
 
