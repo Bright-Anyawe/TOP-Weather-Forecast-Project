@@ -1,7 +1,11 @@
-const container = document.querySelector("#container")
+const container = document.querySelector("#container");
+       const subContainer = document.querySelector('.sub_container')
+       const errorContainer = document.querySelector('#errorContainer')
+const error = document.querySelector(".error");
 
 const form = document.querySelector("#form");
 let locationInputField = document.querySelector("#input");
+const currentWeatherText = document.querySelector(".currentWeatherHeaderMainText")
 const img = document.querySelector("img");
 const gifContainer = document.querySelector("#gifContainer");
 const gifContainer2 = document.querySelector("#gifContainer2");
@@ -72,36 +76,75 @@ locationInputField.addEventListener("input", getUserInput);
 //Get Location current weather condition From Api
 async function getLocation() {
   const userLocation = getUserInput();
-if(userLocation) {
-  
-  try {
-  const response = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
-    { mode: "cors" }
-  );
-  const location = await response.json();
-  
 
-  return location;
+  if (userLocation) {
+    // try {
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
+        { mode: "cors" }
+      );
+      // //Get a ReadableStreamDefaultReader to read the response body
+      // const reader = response.body.getReader();
 
-  } catch (err) {
-  alert("Location not found!");
+      // // Initialize variables to keep track of the data
+      // let downloadedLength = 0;
+      // const chunks = [];
+
+      // while (true) {
+      //   const { done, value } = await reader.read();
+
+      //   if (done) {
+      //     break;
+      //   }
+      //   downloadedLength += value.length;
+      //   chunks.push(value);
+      // }
+
+      // console.log(downloadedLength);
+      // //Concatenate the chucks into a single Uint8Array
+      // let completeData = new Uint8Array(downloadedLength);
+      // let position = 0;
+      // console.log(completeData);
+      // for (const chuck of chucks) {
+      //   completeData.set(chuck, position);
+      //   position += chuck.length;
+      // }
+
+      // console.log(chunks);
+
+      // const result = new TextDecoder().decode(completeData);
+      // console.log(result);
+
+      // //Convert data into json object
+      // const locationObj = JSON.parse(result);
+      // console.log(locationObj);
+      const locationObj = await response.json();
+
+      return locationObj;
+    // } catch (err) {
+    //   alert("Check your network!");
+    // }
+  } else {
+    alert("You've not entered any value");
   }
-}
-else {
-  alert("You've not entered any value")
-}
 }
 
 //Get current weather info
 function getCurrentWeatherConditon() {
-  const weatherConditon = getLocation()
-  weatherConditon.then((location) => {
+  const userLocationInput = getLocation();
+  const userInput = getUserInput();
+  if (userLocationInput) {
 
+    userLocationInput.then((location) => {
     const country = location.location.country;
     const locationName = location.location.name;
 
-    const dewPoint = location.current.dewpoint_c;
+    //Check if userInput location is equal to the locationName return from api
+    if(locationName == userInput ) {
+ subContainer.style.display = "block"
+            errorContainer.style.display = 'none'
+
+     const dewPoint = location.current.dewpoint_c;
     const temperature = location.current.temp_c;
     const windDirection = location.current.wind_dir;
     const feelLikeCondition = location.current.feelslike_c;
@@ -111,41 +154,6 @@ function getCurrentWeatherConditon() {
     const BarometricPressure = location.current.pressure_mb;
     const currentVisibility = location.current.vis_km;
     const currentWeatherPrecipitation = location.current.precip_mm;
-
-    if (temperature <= dewPoint) {
-      fetch(
-        `https://api.giphy.com/v1/gifs/translate?api_key=xUGeBWKikoUF1sOZRB6a37IK2KhrYt3e&s=rainy weather`,
-        { mode: "cors" }
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (response) {
-          // img.src = response.data.images.original.url;
-          gifContainer.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer2.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer3.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer4.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer5.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer6.style.backgroundImage = `url("${response.data.images.original.url}")`;
-        });
-    } else if (temperature > dewPoint) {
-      fetch(
-        `https://api.giphy.com/v1/gifs/translate?api_key=xUGeBWKikoUF1sOZRB6a37IK2KhrYt3e&s=sunny weather`,
-        { mode: "cors" }
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (response) {
-          gifContainer.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer2.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer3.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer4.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer5.style.backgroundImage = `url("${response.data.images.original.url}")`;
-          gifContainer6.style.backgroundImage = `url("${response.data.images.original.url}")`;
-        });
-    }
 
     //Get current weather data object
     const currentWeatherObj = location.current;
@@ -181,10 +189,30 @@ function getCurrentWeatherConditon() {
 
     currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
     currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
-  });
-}
 
-function getDayOneWeatherCondition() {
+      currentWeatherText.textContent = 'Current Weather';
+        // if(container.style.display === "block") {
+        //   container.style.display = "none"
+        // } else {
+          // }
+           
+      
+    }
+    else {
+       subContainer.style.display = 'none'
+       errorContainer.style.display = "block"
+      //  const error = document.createElement('div');
+
+       error.textContent = `Location not found!, Enter  valid location name`
+        //  error.appendChild(error)
+  }
+  });
+  
+  }
+ 
+    }
+
+  function getDayOneWeatherCondition() {
   const dayEl = document.querySelector(".day");
   const monthAndYearEl = document.querySelector(".month-year");
 
@@ -234,22 +262,12 @@ function getDayOneWeatherCondition() {
   const currentWeatherHumidityEl = document.querySelector(
     ".currentWeatherHumidityEl"
   );
-  const dateEl = document.querySelector(".date");
   const dailyWillItRainEl = document.querySelector(".dailyWillItRainNumber");
   const dailyWillItRainTextEl = document.querySelector(".dailyWillItRain");
 
   const dailyWillItSnowEl = document.querySelector(".dailyWillItSnowNumber");
   const dailyWillItSnowTextEl = document.querySelector(".dailyWillItSnow");
 
-  const totalPrecipEl = document.querySelector(".totalPrecipNumber");
-  const totalPrecipTextEl = document.querySelector(".totalPrecip");
-
-  const currentWeatherPrecipitationEl = document.querySelector(
-    ".currentWeatherPrecipitationElNumber"
-  );
-  const currentWeatherPrecipitationTextEl = document.querySelector(
-    ".currentWeatherPrecipitationEl"
-  );
   const spanEl = document.createElement("span");
 
   const weatherConditon = getLocation();
@@ -257,12 +275,11 @@ function getDayOneWeatherCondition() {
     const foreCastDay = location.forecast.forecastday;
     console.log(foreCastDay);
 
-    //Get objects for the 7 weeks
+    //Get day1 object for the week
     let day1 = foreCastDay[0];
     const date = day1.date;
 
     const dateObj = new Date(date);
-    console.log(dateObj);
 
     const options = {
       year: "numeric",
@@ -270,15 +287,13 @@ function getDayOneWeatherCondition() {
       day: "numeric",
     };
 
+    // Get only a day
     const weekday = {
       weekday: "long",
     };
 
-    // const day = options.weekday
     const day = dateObj.toLocaleDateString("en-Us", weekday);
-    console.log(day);
     const fullDayInWeeks = dateObj.toLocaleDateString("en-Us", options);
-    console.log(fullDayInWeeks);
 
     const sunRise = day1.astro.sunrise;
     const sunSet = day1.astro.sunset;
@@ -294,8 +309,7 @@ function getDayOneWeatherCondition() {
     const dailyChanceOfSnow = day1.day.daily_chance_of_snow;
     const dailyWillItRain = day1.day.daily_will_it_rain;
 
-    let day1Hours = day1.hour;
-    console.log(day1Hours);
+    // let day1Hours = day1.hour;
 
     sunRiseEl.textContent = sunRise;
     sunRiseTextEl.textContent = "Sunrise";
@@ -338,9 +352,8 @@ function getDayOneWeatherCondition() {
     dayOneboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayOneboldTempEl.appendChild(spanEl);
-    console.log(weatherIcon);
-
   });
+
 }
 
 function getDayTwoWeatherCondition() {
@@ -397,13 +410,6 @@ function getDayTwoWeatherCondition() {
   const dailyChanceOfSnowTextEl = document.querySelector(
     ".dayTwodailyChanceOfSnow"
   );
-  const currentWeatherHumidityTextEl = document.querySelector(
-    ".dayTwocurrentWeatherHumidityElNumber"
-  );
-  const currentWeatherHumidityEl = document.querySelector(
-    ".dayTwocurrentWeatherHumidityEl"
-  );
-  const dateEl = document.querySelector(".dayTwodate");
   const dailyWillItRainEl = document.querySelector(
     ".dayTwodailyWillItRainNumber"
   );
@@ -448,12 +454,6 @@ function getDayTwoWeatherCondition() {
     const fullDayInWeeks = dateObj.toLocaleDateString("en-Us", options);
     console.log(fullDayInWeeks);
 
-    // let day2 = foreCastDay[1];
-    // let day3 = foreCastDay[2];
-    // let day4 = foreCastDay[3];
-    // let day5 = foreCastDay[4];
-    // let day6 = foreCastDay[5];
-    // let day7 = foreCastDay[6];
     const sunRise = day2.astro.sunrise;
     const sunSet = day2.astro.sunset;
     const moonRise = day2.astro.moonrise;
@@ -469,8 +469,7 @@ function getDayTwoWeatherCondition() {
     const dailyWillItRain = day2.day.daily_will_it_rain;
     const dailyWillItSnow = day2.day.daily_will_it_snow;
     const totalPrecip = day2.day.totalprecip_mm;
-    let day1Hours = day2.hour;
-    console.log(day1Hours);
+    // let day1Hours = day2.hour;
 
     sunRiseEl.textContent = sunRise;
     sunRiseTextEl.textContent = "Sunrise";
@@ -513,17 +512,7 @@ function getDayTwoWeatherCondition() {
     dayTwoboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayTwoboldTempEl.appendChild(spanEl);
-    console.log(weatherIcon);
 
-    // for(hour in day1Hours) {
-    //   console.log(hour)
-    //   let dayHour = hour;
-    //   console.log(dayHour)
-    // }
-
-    // currentWeatherInfo.appendChild(countryEl)
-    // currentWeatherInfo.appendChild(countryEl)
-    // console.log(temperature);
   });
 }
 
@@ -582,7 +571,7 @@ function getDayThreeWeatherCondition() {
   const dailyChanceOfSnowTextEl = document.querySelector(
     ".dayThreedailyChanceOfSnow"
   );
-  
+
   const dailyWillItRainEl = document.querySelector(
     ".dayThreedailyWillItRainNumber"
   );
@@ -623,7 +612,6 @@ function getDayThreeWeatherCondition() {
     const day = dateObj.toLocaleDateString("en-Us", weekday);
     const fullDayInWeeks = dateObj.toLocaleDateString("en-Us", options);
 
-  
     const sunRise = day3.astro.sunrise;
     const sunSet = day3.astro.sunset;
     const moonRise = day3.astro.moonrise;
@@ -637,7 +625,7 @@ function getDayThreeWeatherCondition() {
     const dailyChanceOfRain = day3.day.daily_chance_of_rain;
     const dailyChanceOfSnow = day3.day.daily_chance_of_snow;
     const dailyWillItRain = day3.day.daily_will_it_rain;
-   
+
     sunRiseEl.textContent = sunRise;
     sunRiseTextEl.textContent = "Sunrise";
 
@@ -677,11 +665,9 @@ function getDayThreeWeatherCondition() {
     dayThreeWeatherConditionImg.src = weatherIcon;
     dayThreeWeatherConditionImg.alt = weatherIconText;
 
-
     dayThreeboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayThreeboldTempEl.appendChild(spanEl);
-
   });
 }
 
@@ -711,7 +697,7 @@ function submitForm(event) {
   event.preventDefault();
   getUserInput();
   getLocation();
-  container.style.display = 'block';
+  container.style.display = 'block'
   getCurrentWeatherConditon();
   getDayOneWeatherCondition();
   getDayTwoWeatherCondition();
