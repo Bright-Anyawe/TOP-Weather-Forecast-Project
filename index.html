@@ -14,13 +14,14 @@
 
         <header id="hero">
             <div id="heroContent">
-                <div class="descriptionHeader">
+                <div class="headerText">
                     <p>
                         Gen-weather search
                     </p>
                 </div>
+
                 <form action="" id="form">
-                    <input type="text" id="input" placeholder="Enter location..">
+                    <input type="text" id="input" placeholder="Enter location  for weather forecast data..">
                     <div id="searchLocation">
                         <svg id="searchLocation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <title>magnify</title>
@@ -33,39 +34,22 @@
             </div>
         </header>
 
-        <section id="gifContainer">
-            <!-- <div>What a day gif</div> -->
-            <img class="secondImg" src="#" alt="">
-        </section>
-
-
-        <section id="gifContainer2">
-            <!-- <img class="secondGif" src="#" alt=""> -->
-        </section>
-
-        <section id="gifContainer3">
-
-        </section>
-
-        <section id="gifContainer4">
-
-        </section>
-
-        <section id="gifContainer5">
-
-        </section>
-
-        <section id="gifContainer6">
-
-        </section>
-
-
+        
         <section id="container">
 
-
+            <div id="errorContainer"> 
+                <div class="errorCover"> 
+                    <div class='warningContainer'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>alert-outline</title><path d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" /></svg>
+                    </div>
+                    <p class= "error"> </p>
+                </div>
+            </div>
+<div class="sub_container">
+    
             <div class="currentWeatherInfo">
                 <div class="currentWeatherHeader">
-                    <h3>Current Weather</h3>
+                    <h3 class="currentWeatherHeaderMainText"></h3>
                     <h4 class="countryEl"></h4>
                 </div>
 
@@ -409,6 +393,8 @@
 
             </div>
 
+    
+</div>
         </section>
 
 

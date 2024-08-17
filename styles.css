@@ -3,19 +3,233 @@ body {
     margin: 0;
 }
 
+
+@media (max-width: 550px) {
+
+    body main {
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto", sans-serif;
+    }
+
+    main #hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: grey;
+        min-height: 140px;
+    }
+
+    .headerText {
+        display: none;
+    }
+
+    #hero #heroContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #heroContent #form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form #input {
+        height: 18px;
+        width: 300px;
+        padding: 10px;
+        border-radius: 9px;
+        font-size: 17px;
+        border: none;
+        outline: none;
+    }
+
+    ::placeholder {
+        font-size: 20px;
+        max-width: 400px;
+    }
+
+    #searchLocation svg {
+        width: 30px;
+        height: 30px;
+        pointer-events: none;
+        fill: azure;
+    }
+
+
+    #searchLocation:active {
+        background-color: rgba(173, 157, 14, );
+        border-radius: 50%;
+    }
+
+
+    main #container {
+        display: none;
+
+    }
+}
+
+@media (min-width: 551px) and (max-width: 768px) {
+
+    body main {
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto", sans-serif;
+    }
+
+    main #hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: grey;
+        min-height: 136px;
+    }
+
+    #hero #heroContent {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: hwb(0 93% 6%);
+    }
+
+    #heroContent .headerText {
+        font-size: 25px;
+        padding: 15px;
+        font-weight: 900;
+    }
+
+
+
+    #heroContent #form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form #input {
+        height: 25px;
+        width: 340px;
+        padding: 7px;
+        border-radius: 9px;
+        font-size: 17px;
+        border: none;
+        outline: none;
+    }
+
+    #input ::placeholder {
+        font-size: 23px;
+    }
+
+    #searchLocation svg {
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        fill: azure;
+    }
+
+
+    #searchLocation:active {
+        border-radius: 50%;
+    }
+
+
+    main #container {
+        display: none;
+        min-height: 1043px;
+        max-height: 1043px;
+
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+
+    body main {
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto", sans-serif;
+    }
+
+    main #hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: grey;
+        min-height: 136px;
+    }
+
+    #hero #heroContent {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: hwb(0 93% 6%);
+    }
+
+    #heroContent .headerText {
+        font-size: 25px;
+        padding: 15px;
+        font-weight: 900;
+    }
+
+
+
+    #heroContent #form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form #input {
+        height: 25px;
+        width: 340px;
+        padding: 7px;
+        border-radius: 9px;
+        font-size: 17px;
+        border: none;
+        outline: none;
+    }
+
+    #input ::placeholder {
+        font-size: 23px;
+    }
+
+    #searchLocation svg {
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        fill: azure;
+    }
+
+
+
+    #searchLocation:active {
+        border-radius: 50%;
+    }
+
+
+    main #container {
+        display: none;
+        min-height: 1043px;
+        max-height: 100%;
+
+    }
+}
+
 main {
     display: grid;
-    grid-template-columns: 5% 10% 60% 20%;
-    grid-template-rows: 70px repeat(5, 295px);
-    /* gap: 2rem 0px; */
+    grid-template-columns: 200px 50% 200px;
+    grid-template-rows: 120px repeat(4, 295px);
     font-family: "Roboto", sans-serif;
-
 
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("asset/Roboto/Roboto-Black.ttf") format('ttf');
+    src: url("./asset/Roboto/Roboto-Black.ttf") format('ttf');
 
     font-style: normal;
     font-weight: 700;
@@ -23,9 +237,6 @@ main {
 
 #hero {
     grid-area: 1 / 1 / 2 / 7;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     background-color: grey;
 }
 
@@ -34,49 +245,53 @@ main {
     justify-content: space-around;
     align-items: center;
     color: hwb(0 93% 6%);
+    gap: 50px;
+    padding-inline: 70px;
 }
 
-#gifContainer {
-    grid-area: 2 / 4 / 3 / 5;
-    background-size: cover;
-}
-
-
-#gifContainer2 {
-    grid-area: 3 / 4 / 4 / 5;
-    background-size: cover;
-
-}
-
-
-#gifContainer3 {
-    grid-area: 4 / 4 / 5 / 5;
-    background-size: cover;
-
-}
-
-#gifContainer4 {
-    grid-area: 5 / 4 / 6 / 5;
-    background-size: cover;
-
-}
-
-#gifContainer5 {
-    grid-area: 6 / 4 / 7 / 5;
-    background-size: cover;
-
-}
-
-#gifContainer6 {
-    grid-area: 6 / 4 / 7 / 5;
-    background-size: cover;
-
-}
 
 #container {
-    background-color: rgb(172, 182, 182);
-    grid-area: 2 / 3 / 8 / 4;
+    background-color: rgb(172 192 192 / 90%);
+    grid-area: 2 / 2 / 8 / 4;
     display: none;
+}
+
+#errorContainer {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 200px;
+    position: relative;
+    top: 12rem;
+    left: 12rem;
+    box-shadow: 0px 7px 10px 3px;
+    display: none
+}
+
+.errorCover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 36px;
+}
+
+.error {
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    width: 300px;
+    margin: 0;
+    outline: solid;
+}
+
+.warningContainer svg {
+    width: 180px;
+    height: 60px;
+    fill: red;
 }
 
 
@@ -94,11 +309,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
 #input {
-    height: 10px;
-    width: 300px;
+    height: 20px;
+    width: 70%;
     padding: 10px;
     border-radius: 9px;
     font-size: 17px;
@@ -107,12 +323,12 @@ main {
 }
 
 ::placeholder {
-    font-size: 17px;
+    font-size: 19px;
 }
 
 svg {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 70px;
     pointer-events: none;
     fill: azure;
 }
@@ -122,14 +338,10 @@ svg {
     border-radius: 50%;
 }
 
-#searchLocation:active {
-    background-color: rgba(173, 157, 14, );
-    border-radius: 50%;
-}
 
 
-.descriptionHeader {
-    font-size: 19px;
+.headerText {
+    font-size: 1.6rem;
     padding: 10px;
     font-weight: 900;
 }
@@ -171,15 +383,10 @@ svg {
 
 .weatherCondition {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
 }
 
-/* .weatherCondition p {
-    border-bottom: 1px solid white;
-    font-size: 18px;
-} */
 
 #currentWeatherData>div {
     display: flex;
@@ -225,7 +432,6 @@ svg {
 
 #InnerContainer {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
 
@@ -281,7 +487,6 @@ svg {
 
 #dayTwoInnerContainer {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
 
@@ -335,7 +540,6 @@ svg {
 
 #dayThreeInnerContainer {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
     align-items: center;
 

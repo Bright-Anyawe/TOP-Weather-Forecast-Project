@@ -697,11 +697,11 @@ function submitForm(event) {
   event.preventDefault();
   getUserInput();
   getLocation();
-  container.style.display = 'block'
   getCurrentWeatherConditon();
   getDayOneWeatherCondition();
   getDayTwoWeatherCondition();
   getDayThreeWeatherCondition();
+  container.style.display = 'block'
   // displayCurrentWeatherInfo();
 
   locationInputField.value = "";
