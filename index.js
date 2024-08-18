@@ -52,13 +52,6 @@ const currentVisibilityEl = document.querySelector(
   ".currentVisibilityElNumber"
 );
 
-// const currentWeatherLastUpdateTextEl = document.querySelector(
-//   ".currentWeatherLastUpdateElNumber"
-// );
-// const currentWeatherLastUpdateEl = document.querySelector(
-//   ".currentWeatherLastUpdateElNumber"
-// );
-
 const currentWeatherPrecipitationTextEl = document.querySelector(
   ".currentWeatherPrecipitationEl"
 );
@@ -670,6 +663,53 @@ function getDayThreeWeatherCondition() {
     dayThreeboldTempEl.appendChild(spanEl);
   });
 }
+const dayOneWeatherDetails = document.querySelector("#dayOneWeatherDetails");
+const dayOneweatherSvgContainer = document.querySelector(".dayOneweatherSvgContainer")
+const dayOneAdditionalInfo = document.querySelector("#dayOneAdditionalInfo");
+const dayOneweatherLeftSvgContainer = document.querySelector(".dayOneweatherLeftSvgContainer")
+
+
+//Display bottom additonal information
+const displayAdditionalBottomInfo = () => {
+
+  if (dayOneAdditionalInfo.textContent) {
+  
+  console.log(dayOneAdditionalInfo)
+  dayOneAdditionalInfo.style.display = 'none'
+}
+
+  if (dayOneweatherLeftSvgContainer.textContent) {
+    console.log(dayOneAdditionalInfo);
+    dayOneweatherLeftSvgContainer.style.display = "none";
+  }
+
+}
+displayAdditionalBottomInfo()
+
+
+// const displayInfo = () => {
+//   if (dayOneAdditionalInfo.textContent) {
+//     console.log(dayOneAdditionalInfo);
+//     dayOneAdditionalInfo.style.display = "none";
+//   }
+// };
+// displayAdditionalBottomInfo();
+
+function displayBottomWeatherData() {
+
+  dayOneAdditionalInfo.style.display = "block";
+  dayOneWeatherDetails.style.display = 'none'
+  dayOneweatherSvgContainer.style.display = 'none'
+
+ if (dayOneweatherLeftSvgContainer.style.display === 'none') {
+   console.log(dayOneAdditionalInfo);
+   dayOneweatherLeftSvgContainer.style.display = "block";
+ }
+  
+}
+dayOneweatherSvgContainer.addEventListener("click", displayBottomWeatherData);
+
+
 
 // function displayCurrentWeatherInfo() {
 //   const country = getLocation().country;
