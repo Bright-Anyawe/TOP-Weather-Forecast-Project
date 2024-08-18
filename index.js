@@ -686,15 +686,6 @@ const displayAdditionalBottomInfo = () => {
 }
 displayAdditionalBottomInfo()
 
-
-// const displayInfo = () => {
-//   if (dayOneAdditionalInfo.textContent) {
-//     console.log(dayOneAdditionalInfo);
-//     dayOneAdditionalInfo.style.display = "none";
-//   }
-// };
-// displayAdditionalBottomInfo();
-
 function displayBottomWeatherData() {
 
   dayOneAdditionalInfo.style.display = "block";
@@ -711,27 +702,18 @@ dayOneweatherSvgContainer.addEventListener("click", displayBottomWeatherData);
 
 
 
-// function displayCurrentWeatherInfo() {
-//   const country = getLocation().country;
-//   const locationName = getLocation().locationName;
-//   const temperature = getLocation().temperature;
-//   const windDirection = getLocation().windDirection;
-//   const windDirInDegree = getLocation().windDirInDegree;
+function displayRightWeatherData() {
+  dayOneAdditionalInfo.style.display = "none";
+  dayOneWeatherDetails.style.display = "block";
+  dayOneweatherLeftSvgContainer.style.display = "none";
 
-//   // const countryEl = document.createElement('p');
-//   // currentWeatherInfo.textContent = `${country}-${locationName}:`;
-//   countryEl.textContent = `${country}-${locationName}:`;
-//   temperatureEl.textContent = ` temp in celsius: ${temperature}°`;
-//   windDirEl.textContent = ` wind direction: ${windDirection}°`;
-//   windDirInDegreeEl.textContent = ` wind direction in degrees celsius: ${windDirInDegree}°`;
-//   feelLikeEl.textContent = `feel like conditon in celsius: ${feelLikeCondition}°`;
-//   weatherIconEl.textContent = `Day condition icon: ${weatherIcon}`;
-//   currentWeatherHumidityEl.textContent = `Daily humidity condition of the weather: ${currentWeatherHumidity}%`;
-//   barometricPressureEl.textContent = `Daily barometric pressure condition of the weather: ${BarometricPressure}mb`;
-//   currentVisibilityEl.textContent = `Daily weather visibility condition in kilometer: ${currentVisibility}km`;
-//   currentWeatherLastUpdateEl.textContent = `Daily weather lastly update condition: ${currentWeatherLastUpdate}`;
-//   currentWeatherPrecipitationEl.textContent = `Daily weather precipitation condition in milimeters: ${currentWeatherPrecipitation}mm`;
-// }
+  if (dayOneweatherSvgContainer.style.display === "none") {
+    console.log(dayOneAdditionalInfo);
+    dayOneweatherSvgContainer.style.display = "block";
+  }
+}
+dayOneweatherLeftSvgContainer.addEventListener("click", displayRightWeatherData);
+
 
 function submitForm(event) {
   event.preventDefault();
