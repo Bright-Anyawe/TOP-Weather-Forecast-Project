@@ -356,7 +356,7 @@ svg {
     width: 35px;
     height: 70px;
     pointer-events: none;
-    fill: azure;
+    fill: #070707;
 }
 
 #searchLocation:hover {
