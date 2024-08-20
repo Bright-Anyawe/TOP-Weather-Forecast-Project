@@ -25,6 +25,18 @@ body {
         display: none;
     }
 
+    div.dayOneweatherSvgContainer, div.dayTwoweatherSvgContainer, div.dayThreeweatherSvgContainer {
+        display: block;
+    }
+
+    .dayOneweatherLeftSvgContainer, .dayTwoweatherLeftSvgContainer, .dayThreeweatherLeftSvgContainer {
+        display: block;
+    }
+
+    div#dayOneAdditionalInfo, div#dayTwoAdditionalInfo, div#dayThreeAdditionalInfo {
+        display: none;
+    }
+
     #hero #heroContent {
         display: flex;
         justify-content: center;
@@ -265,6 +277,11 @@ main {
     display: none;
 }
 
+
+#dayOneAdditionalInfo {
+    display: block;
+}
+
 #errorContainer {
     border-radius: 10px;
     display: flex;
@@ -309,7 +326,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     border: 6px solid white;
-    border-radius: 60px 34px;
+    border-radius: 15px;
     margin: 20px;
 }
 
@@ -403,7 +420,7 @@ svg {
     align-items: center;
     gap: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, .15);
-    font-size: 19px;
+    font-size: 1.1rem;
     margin-top: 15px;
 
 }
@@ -419,7 +436,7 @@ svg {
     display: flex;
     flex-direction: column;
     border: 6px solid white;
-    border-radius: 60px 34px;
+    border-radius: 15px;
     justify-content: space-between;
     margin: 20px;
 }
@@ -446,6 +463,14 @@ svg {
 
 }
 
+.dayOneweatherSvgContainer, .dayTwoweatherSvgContainer, .dayThreeweatherSvgContainer {
+    display: none;
+}
+
+.dayOneweatherLeftSvgContainer, .dayTwoweatherLeftSvgContainer, .dayThreeweatherLeftSvgContainer {
+    display: none;
+}
+
 #dayOneWeatherDetails>div, #dayOneAdditionalInfo>div {
     display: flex;
     justify-content: space-between;
@@ -466,7 +491,7 @@ svg {
     display: flex;
     flex-direction: column;
     border: 6px solid white;
-    border-radius: 60px 34px;
+    border-radius: 15px;
     justify-content: space-between;
     margin: 20px;
 }
@@ -519,7 +544,7 @@ svg {
     display: flex;
     flex-direction: column;
     border: 6px solid white;
-    border-radius: 60px 34px;
+    border-radius: 15px;
     justify-content: space-between;
     margin: 20px;
 }
