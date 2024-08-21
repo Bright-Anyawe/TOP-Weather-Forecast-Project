@@ -25,6 +25,10 @@ body {
         display: none;
     }
 
+    #currentWeatherData {
+        word-break: break-all;
+    }
+
     div.dayOneweatherSvgContainer, div.dayTwoweatherSvgContainer, div.dayThreeweatherSvgContainer {
         display: block;
     }
@@ -194,6 +198,7 @@ body {
         font-size: 25px;
         padding: 15px;
         font-weight: 900;
+        text-align: center;
     }
 
 
@@ -482,6 +487,7 @@ svg {
 }
 
 #dayOneWeatherDetails>div>p, #dayOneAdditionalInfo>div>p {
+    word-break: break-all;
     margin: 0;
 }
 
@@ -538,6 +544,7 @@ svg {
 
 #dayTwoWeatherDetails>div>p, #dayTwoAdditionalInfo>div>p {
     margin: 0;
+    word-break: break-all;
 }
 
 #dayThree {
@@ -591,6 +598,7 @@ svg {
 
 #dayThreeWeatherDetails>div>p, #dayThreeAdditionalInfo>div>p {
     margin: 0;
+    word-break: break-all;
 }
 
 #submitLocation {
