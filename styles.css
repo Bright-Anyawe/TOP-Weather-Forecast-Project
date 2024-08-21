@@ -41,10 +41,15 @@ body {
         display: none;
     }
 
+    .svgContent svg, .LeftsvgContent svg {
+        fill: black;
+    }
+
     #hero #heroContent {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-inline: 0;
     }
 
     #heroContent #form {
@@ -250,7 +255,7 @@ main {
     grid-template-columns: 200px 50% 200px;
     grid-template-rows: 120px repeat(4, 295px);
     font-family: "Roboto", sans-serif;
-    
+
     position: relative;
 
 }
@@ -378,12 +383,11 @@ svg {
     width: 35px;
     height: 70px;
     pointer-events: none;
-    fill: #070707;
+    fill: white;
 }
 
 #searchLocation:hover {
-    background-color: rgb(150, 233, 233, .2);
-    border-radius: 50%;
+    transform: scale(1.05);
 }
 
 
