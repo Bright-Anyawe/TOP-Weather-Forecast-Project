@@ -711,6 +711,8 @@ const dayThreeweatherLeftSvgContainer = document.querySelector(
 function displayDayBottomWeatherData(event) {
   const targetEl = event.target;
 
+  console.log('Display bottom weather data')
+
   switch (true) {
     case targetEl.classList.contains("dayOneweatherSvgContainer"):
       dayOneAdditionalInfo.style.display = "block";
