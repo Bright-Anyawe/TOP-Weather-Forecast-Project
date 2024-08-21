@@ -696,17 +696,17 @@ const dayThreeweatherLeftSvgContainer = document.querySelector(
 );
 
 //Display bottom additonal information
-const removeAdditionalBottomInfo = () => {
-  console.log(dayTwoAdditionalInfo);
-  dayOneAdditionalInfo.style.display = "none";
-  dayTwoAdditionalInfo.style.display = "none";
-  dayThreeAdditionalInfo.style.display = "none";
+// const removeAdditionalBottomInfo = () => {
+//   console.log(dayTwoAdditionalInfo);
+//   dayOneAdditionalInfo.style.display = "none";
+//   dayTwoAdditionalInfo.style.display = "none";
+//   dayThreeAdditionalInfo.style.display = "none";
 
-  dayOneweatherLeftSvgContainer.style.display = "none";
-  dayTwoweatherLeftSvgContainer.style.display = "none";
-  dayThreeweatherLeftSvgContainer.style.display = "none";
-};
-removeAdditionalBottomInfo();
+//   dayOneweatherLeftSvgContainer.style.display = "none";
+//   dayTwoweatherLeftSvgContainer.style.display = "none";
+//   dayThreeweatherLeftSvgContainer.style.display = "none";
+// };
+// removeAdditionalBottomInfo();
 
 function displayDayBottomWeatherData(event) {
   const targetEl = event.target;
@@ -717,7 +717,7 @@ function displayDayBottomWeatherData(event) {
       dayOneWeatherDetails.style.display = "none";
       dayOneweatherSvgContainer.style.display = "none";
 
-      if (dayOneweatherLeftSvgContainer.style.display === "none") {
+      if (dayOneweatherLeftSvgContainer.style.display = "none") {
         dayOneweatherLeftSvgContainer.style.display = "block";
       }
 
@@ -728,7 +728,7 @@ function displayDayBottomWeatherData(event) {
       dayTwoWeatherDetails.style.display = "none";
       dayTwoweatherSvgContainer.style.display = "none";
 
-      if (dayTwoweatherLeftSvgContainer.style.display === "none") {
+      if (dayTwoweatherLeftSvgContainer.style.display = "none") {
         dayTwoweatherLeftSvgContainer.style.display = "block";
       }
 
@@ -739,7 +739,7 @@ function displayDayBottomWeatherData(event) {
       dayThreeWeatherDetails.style.display = "none";
       dayThreeweatherSvgContainer.style.display = "none";
 
-      if (dayThreeweatherLeftSvgContainer.style.display === "none") {
+      if (dayThreeweatherLeftSvgContainer.style.display = "none") {
         dayThreeweatherLeftSvgContainer.style.display = "block";
       }
 
