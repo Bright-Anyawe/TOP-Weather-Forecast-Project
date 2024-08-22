@@ -1,6 +1,22 @@
 body {
     padding: 0;
     margin: 0;
+    position: relative;
+
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('asset/Images/blue-sky-with-cloud-closeup_150588-122.avif');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 
@@ -88,8 +104,9 @@ body {
 
 
     main #container {
-        display: none;
-
+        /* display: none; */
+        /* height: 100vh; */
+        min-height: 100vh;
     }
 
     img.weatherConditionImg {
@@ -100,6 +117,55 @@ body {
         font-size: 2rem;
         margin: 0;
     }
+
+    div#errorContainer {
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 300px;
+        height: 200px;
+        position: static;
+        /* top: 0;
+        left: 12rem; */
+        box-shadow: 0px 7px 10px 3px;
+        display: none;
+    }
+
+    div.errorMainContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 9rem;
+    }
+
+    .errorTextContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p.error {
+        color: black;
+        font-weight: 700;
+        font-size: 20px;
+        max-width: 200px;
+        margin: 0;
+        outline: solid;
+        text-align: center;
+    }
+
+    div.errorCover {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px 36px;
+    }
+
+
 }
 
 @media (min-width: 551px) and (max-width: 768px) {
@@ -130,6 +196,7 @@ body {
         font-size: 25px;
         padding: 15px;
         font-weight: 900;
+        text-align: center;
     }
 
 

@@ -13,9 +13,8 @@
       <header id="hero">
         <div id="heroContent">
           <div class="headerText">
-            <p>Gen-weather search</p>
+            <p>Gen weather search</p>
           </div>
-          <div class="formContainer">
             <form action="" id="form">
               <input
                 type="text"
@@ -36,13 +35,13 @@
               </div>
               <!-- <input type="submit" id="submitLocation"> -->
             </form>
-          </div>
         </div>
       </header>
 
       <section id="container">
-        <div id="errorContainer">
-          <div class="errorCover">
+        <div class="errorMainContainer">
+          <div id="errorContainer">
+            <div class="errorCover">
             <div class="warningContainer">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <title>alert-outline</title>
@@ -51,7 +50,10 @@
                 />
               </svg>
             </div>
-            <p class="error"></p>
+          </div>
+            <div class='errorTextContainer'>
+              <p class="error"></p>
+            </div>
           </div>
         </div>
         <div class="sub_container">
