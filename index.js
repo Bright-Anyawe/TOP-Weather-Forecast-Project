@@ -74,71 +74,78 @@ async function getLocation() {
 
 
   if (userLocation) {
-    // try {
-    const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
-      { mode: "cors" }
-    );
-    console.log(response);
-    // //Get a ReadableStreamDefaultReader to read the response body
-    // const reader = response.body.getReader();
-
-    // // Initialize variables to keep track of the data
-    // let downloadedLength = 0;
-    // const chunks = [];
-
-    // while (true) {
-    //   const { done, value } = await reader.read();
-
-    //   if (done) {
-    //     break;
-    //   }
-    //   downloadedLength += value.length;
-    //   chunks.push(value);
-    // }
-
-    // console.log(downloadedLength);
-    // //Concatenate the chucks into a single Uint8Array
-    // let completeData = new Uint8Array(downloadedLength);
-    // let position = 0;
-    // console.log(completeData);
-    // for (const chuck of chucks) {
-    //   completeData.set(chuck, position);
-    //   position += chuck.length;
-    // }
-
-    // console.log(chunks);
-
-    // const result = new TextDecoder().decode(completeData);
-    // console.log(result);
-
-    // //Convert data into json object
-    // const locationObj = JSON.parse(result);
-    // console.log(locationObj);
-
-    // alert(
-    //   "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
-    // )
-    // return;
-
-    if (!response.ok && !alertShown) {
-      alert(
-        "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+    try {
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
+        { mode: "cors" }
       );
-      alertShown = true;
+      console.log(response);
+      // //Get a ReadableStreamDefaultReader to read the response body
+      // const reader = response.body.getReader();
 
-      return;
+      // // Initialize variables to keep track of the data
+      // let downloadedLength = 0;
+      // const chunks = [];
+
+      // while (true) {
+      //   const { done, value } = await reader.read();
+
+      //   if (done) {
+      //     break;
+      //   }
+      //   downloadedLength += value.length;
+      //   chunks.push(value);
+      // }
+
+      // console.log(downloadedLength);
+      // //Concatenate the chucks into a single Uint8Array
+      // let completeData = new Uint8Array(downloadedLength);
+      // let position = 0;
+      // console.log(completeData);
+      // for (const chuck of chucks) {
+      //   completeData.set(chuck, position);
+      //   position += chuck.length;
+      // }
+
+      // console.log(chunks);
+
+      // const result = new TextDecoder().decode(completeData);
+      // console.log(result);
+
+      // //Convert data into json object
+      // const locationObj = JSON.parse(result);
+      // console.log(locationObj);
+
+      // alert(
+      //   "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+      // )
+      // return;
+
+      if (!response.ok && !alertShown) {
+        alert(
+          "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+        );
+        alertShown = true;
+
+        return;
+      }
+
+      const locationObj = await response.json();
+      console.log(locationObj);
+
+      return locationObj;
+
+    } catch (error) {
+      if (!alertShown) {
+        alert("An error occurred. Please try again later.");
+        alertShown = true;
+      }
     }
-
-    const locationObj = await response.json();
-    console.log(locationObj);
-
-    return locationObj;
-    // } catch (err) {
-    //   alert("Check your network!");
-    // }
   } else {
-    alert("You've not entered any value");
+    // if (!alertShown) {
+      alert("Please enter a location.");
+              resetAlert();
+    // }
   }
 }
 
