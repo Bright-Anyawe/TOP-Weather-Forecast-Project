@@ -22,6 +22,26 @@ body::before {
 
 @media (max-width: 550px) {
 
+    html body {
+
+        position: relative;
+
+    }
+
+    html body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('asset/Images/blue-sky-with-cloud-closeup_150588-122.avif');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
+    }
+
     body main {
         display: flex;
         flex-direction: column;
@@ -104,8 +124,7 @@ body::before {
 
 
     main #container {
-        /* display: none; */
-        /* height: 100vh; */
+
         min-height: 100vh;
     }
 

@@ -27,8 +27,6 @@ const dewPointEl = document.querySelector(".dewPointElNumber");
 const windDirTextEl = document.querySelector(".windDirEl");
 const windDirEl = document.querySelector(".windDirNumber");
 
-// const windDirInDegreeTextEl = document.querySelector(".windDirInDegree");
-// const windDirInDegreeEl = document.querySelector(".windDirInDegreeNumber");
 
 const feelLikeTextEl = document.querySelector(".feelLikeEl");
 const feelLikeEl = document.querySelector(".feelLikeElNumber");
@@ -63,8 +61,9 @@ const currentWeatherPrecipitationEl = document.querySelector(
 //Get user Input
 function getUserInput() {
   let userInput = locationInputField.value;
+  let CaptalizeInitialLetter = userInput.charAt(0).toUpperCase() + userInput.slice(1);
 
-  return userInput;
+  return CaptalizeInitialLetter;
 }
 locationInputField.addEventListener("input", getUserInput);
 
@@ -660,7 +659,9 @@ function getDayThreeWeatherCondition() {
 
 const mediaQuery = window.matchMedia('(max-width: 550px)')
 
-if(mediaQuery.matches) {
+function handleMediaQuery() {
+  
+  if(mediaQuery.matches) {
   
 const dayOneWeatherDetails = document.querySelector("#dayOneWeatherDetails");
 const dayTwoWeatherDetails = document.querySelector("#dayTwoWeatherDetails");
@@ -822,6 +823,8 @@ dayThreeweatherLeftSvgContainer.addEventListener(
 
 
 }
+}
+window.addEventListener("change", handleMediaQuery);
 
 // function displayDayThreeRightWeatherData() {
 //   dayThreeAdditionalInfo.style.display = "none";
