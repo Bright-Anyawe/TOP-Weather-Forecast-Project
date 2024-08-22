@@ -121,10 +121,12 @@ async function getLocation() {
       // )
       // return;
 
-      if (!response.ok && !alertShown) {
+      if (!response.ok && !alertShown ) {
         alert(
           "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
         );
+                subContainer.style.display = "none";
+
         alertShown = true;
 
         return;
@@ -138,13 +140,17 @@ async function getLocation() {
     } catch (error) {
       if (!alertShown) {
         alert("An error occurred. Please try again later.");
+                subContainer.style.display = "none";
+
         alertShown = true;
       }
     }
-  } else {
+  } else if (!alertShown) {
     // if (!alertShown) {
-      alert("Please enter a location.");
-              resetAlert();
+    alert("Please enter a location.");
+    // resetAlert();
+    subContainer.style.display = "none";
+
     // }
   }
 }
