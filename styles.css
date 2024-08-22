@@ -28,7 +28,7 @@ body::before {
 
     }
 
-    html body::before {
+    html::before {
         content: "";
         position: absolute;
         top: 0;
