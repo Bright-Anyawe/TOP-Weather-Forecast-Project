@@ -122,10 +122,10 @@ async function getLocation() {
       // return;
 
       if (!response.ok && !alertShown ) {
+        subContainer.style.display = "none";
         alert(
           "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
         );
-                subContainer.style.display = "none";
 
         alertShown = true;
 
