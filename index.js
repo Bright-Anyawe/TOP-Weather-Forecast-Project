@@ -27,7 +27,6 @@ const dewPointEl = document.querySelector(".dewPointElNumber");
 const windDirTextEl = document.querySelector(".windDirEl");
 const windDirEl = document.querySelector(".windDirNumber");
 
-
 const feelLikeTextEl = document.querySelector(".feelLikeEl");
 const feelLikeEl = document.querySelector(".feelLikeElNumber");
 
@@ -61,15 +60,18 @@ const currentWeatherPrecipitationEl = document.querySelector(
 //Get user Input
 function getUserInput() {
   let userInput = locationInputField.value;
-  let CaptalizeInitialLetter = userInput.charAt(0).toUpperCase() + userInput.slice(1);
+  let captalizeUserInputInitialLetter =
+    userInput.charAt(0).toUpperCase() + userInput.slice(1);
 
-  return CaptalizeInitialLetter;
+  return captalizeUserInputInitialLetter;
 }
 locationInputField.addEventListener("input", getUserInput);
 
 //Get Location current weather condition From Api
+let alertShown = false;
 async function getLocation() {
   const userLocation = getUserInput();
+
 
   if (userLocation) {
     // try {
@@ -77,6 +79,7 @@ async function getLocation() {
       `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
       { mode: "cors" }
     );
+    console.log(response);
     // //Get a ReadableStreamDefaultReader to read the response body
     // const reader = response.body.getReader();
 
@@ -112,7 +115,23 @@ async function getLocation() {
     // //Convert data into json object
     // const locationObj = JSON.parse(result);
     // console.log(locationObj);
+
+    // alert(
+    //   "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+    // )
+    // return;
+
+    if (!response.ok && !alertShown) {
+      alert(
+        "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+      );
+      alertShown = true;
+
+      return;
+    }
+
     const locationObj = await response.json();
+    console.log(locationObj);
 
     return locationObj;
     // } catch (err) {
@@ -121,6 +140,10 @@ async function getLocation() {
   } else {
     alert("You've not entered any value");
   }
+}
+
+function resetAlert() {
+  alertShown = false;
 }
 
 //Get current weather info
@@ -341,6 +364,7 @@ function getDayOneWeatherCondition() {
     spanEl.textContent = "c";
     dayOneboldTempEl.appendChild(spanEl);
   });
+resetAlert()
 }
 
 function getDayTwoWeatherCondition() {
@@ -500,6 +524,7 @@ function getDayTwoWeatherCondition() {
     spanEl.textContent = "c";
     dayTwoboldTempEl.appendChild(spanEl);
   });
+resetAlert();
 }
 
 // Get third day weather condition information
@@ -655,174 +680,179 @@ function getDayThreeWeatherCondition() {
     spanEl.textContent = "c";
     dayThreeboldTempEl.appendChild(spanEl);
   });
+resetAlert();
 }
 
-const mediaQuery = window.matchMedia('(max-width: 550px)')
+const mediaQuery = window.matchMedia("(max-width: 550px)");
 
 function handleMediaQuery() {
-  
-  if(mediaQuery.matches) {
-  
-const dayOneWeatherDetails = document.querySelector("#dayOneWeatherDetails");
-const dayTwoWeatherDetails = document.querySelector("#dayTwoWeatherDetails");
-const dayThreeWeatherDetails = document.querySelector(
-  "#dayThreeWeatherDetails"
-);
+  if (mediaQuery.matches) {
+    const dayOneWeatherDetails = document.querySelector(
+      "#dayOneWeatherDetails"
+    );
+    const dayTwoWeatherDetails = document.querySelector(
+      "#dayTwoWeatherDetails"
+    );
+    const dayThreeWeatherDetails = document.querySelector(
+      "#dayThreeWeatherDetails"
+    );
 
-const dayOneweatherSvgContainer = document.querySelector(
-  ".dayOneweatherSvgContainer"
-);
-const dayTwoweatherSvgContainer = document.querySelector(
-  ".dayTwoweatherSvgContainer"
-);
-const dayThreeweatherSvgContainer = document.querySelector(
-  ".dayThreeweatherSvgContainer"
-);
+    const dayOneweatherSvgContainer = document.querySelector(
+      ".dayOneweatherSvgContainer"
+    );
+    const dayTwoweatherSvgContainer = document.querySelector(
+      ".dayTwoweatherSvgContainer"
+    );
+    const dayThreeweatherSvgContainer = document.querySelector(
+      ".dayThreeweatherSvgContainer"
+    );
 
-const dayOneAdditionalInfo = document.querySelector("#dayOneAdditionalInfo");
-const dayTwoAdditionalInfo = document.querySelector("#dayTwoAdditionalInfo");
-const dayThreeAdditionalInfo = document.querySelector(
-  "#dayThreeAdditionalInfo"
-);
-console.log(dayThreeAdditionalInfo);
+    const dayOneAdditionalInfo = document.querySelector(
+      "#dayOneAdditionalInfo"
+    );
+    const dayTwoAdditionalInfo = document.querySelector(
+      "#dayTwoAdditionalInfo"
+    );
+    const dayThreeAdditionalInfo = document.querySelector(
+      "#dayThreeAdditionalInfo"
+    );
+    console.log(dayThreeAdditionalInfo);
 
-const dayOneweatherLeftSvgContainer = document.querySelector(
-  ".dayOneweatherLeftSvgContainer"
-);
-const dayTwoweatherLeftSvgContainer = document.querySelector(
-  ".dayTwoweatherLeftSvgContainer"
-);
-const dayThreeweatherLeftSvgContainer = document.querySelector(
-  ".dayThreeweatherLeftSvgContainer"
-);
+    const dayOneweatherLeftSvgContainer = document.querySelector(
+      ".dayOneweatherLeftSvgContainer"
+    );
+    const dayTwoweatherLeftSvgContainer = document.querySelector(
+      ".dayTwoweatherLeftSvgContainer"
+    );
+    const dayThreeweatherLeftSvgContainer = document.querySelector(
+      ".dayThreeweatherLeftSvgContainer"
+    );
 
-//Display bottom additonal information
-// const removeAdditionalBottomInfo = () => {
-//   console.log(dayTwoAdditionalInfo);
-//   dayOneAdditionalInfo.style.display = "none";
-//   dayTwoAdditionalInfo.style.display = "none";
-//   dayThreeAdditionalInfo.style.display = "none";
+    //Display bottom additonal information
+    // const removeAdditionalBottomInfo = () => {
+    //   console.log(dayTwoAdditionalInfo);
+    //   dayOneAdditionalInfo.style.display = "none";
+    //   dayTwoAdditionalInfo.style.display = "none";
+    //   dayThreeAdditionalInfo.style.display = "none";
 
-//   dayOneweatherLeftSvgContainer.style.display = "none";
-//   dayTwoweatherLeftSvgContainer.style.display = "none";
-//   dayThreeweatherLeftSvgContainer.style.display = "none";
-// };
-// removeAdditionalBottomInfo();
+    //   dayOneweatherLeftSvgContainer.style.display = "none";
+    //   dayTwoweatherLeftSvgContainer.style.display = "none";
+    //   dayThreeweatherLeftSvgContainer.style.display = "none";
+    // };
+    // removeAdditionalBottomInfo();
 
-function displayDayBottomWeatherData(event) {
-  const targetEl = event.target;
+    function displayDayBottomWeatherData(event) {
+      const targetEl = event.target;
 
-  console.log('Display bottom weather data')
+      console.log("Display bottom weather data");
 
-  switch (true) {
-    case targetEl.classList.contains("dayOneweatherSvgContainer"):
-      dayOneAdditionalInfo.style.display = "block";
-      dayOneWeatherDetails.style.display = "none";
-      dayOneweatherSvgContainer.style.display = "none";
+      switch (true) {
+        case targetEl.classList.contains("dayOneweatherSvgContainer"):
+          dayOneAdditionalInfo.style.display = "block";
+          dayOneWeatherDetails.style.display = "none";
+          dayOneweatherSvgContainer.style.display = "none";
 
-      if (dayOneweatherLeftSvgContainer.style.display = "none") {
-        dayOneweatherLeftSvgContainer.style.display = "block";
+          if ((dayOneweatherLeftSvgContainer.style.display = "none")) {
+            dayOneweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+
+        case targetEl.classList.contains("dayTwoweatherSvgContainer"):
+          dayTwoAdditionalInfo.style.display = "block";
+          dayTwoWeatherDetails.style.display = "none";
+          dayTwoweatherSvgContainer.style.display = "none";
+
+          if ((dayTwoweatherLeftSvgContainer.style.display = "none")) {
+            dayTwoweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+        case targetEl.classList.contains("dayThreeweatherSvgContainer"):
+          dayThreeAdditionalInfo.style.display = "block";
+
+          dayThreeWeatherDetails.style.display = "none";
+          dayThreeweatherSvgContainer.style.display = "none";
+
+          if ((dayThreeweatherLeftSvgContainer.style.display = "none")) {
+            dayThreeweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+        default:
+          console.log("other element");
       }
+    }
+    dayOneweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
+    dayTwoweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
 
-      break;
+    dayThreeweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
 
-    case targetEl.classList.contains("dayTwoweatherSvgContainer"):
-      dayTwoAdditionalInfo.style.display = "block";
-      dayTwoWeatherDetails.style.display = "none";
-      dayTwoweatherSvgContainer.style.display = "none";
+    function displayDayRightWeatherData(event) {
+      let targetEl = event.target;
 
-      if (dayTwoweatherLeftSvgContainer.style.display = "none") {
-        dayTwoweatherLeftSvgContainer.style.display = "block";
+      switch (true) {
+        case targetEl.classList.contains("dayOneweatherLeftSvgContainer"):
+          dayOneAdditionalInfo.style.display = "none";
+          dayTwoAdditionalInfo.style.display = "none";
+
+          dayOneWeatherDetails.style.display = "block";
+          dayTwoWeatherDetails.style.display = "block";
+
+          dayOneweatherLeftSvgContainer.style.display = "none";
+
+          if (dayOneweatherSvgContainer.style.display === "none") {
+            console.log(dayOneAdditionalInfo);
+            dayOneweatherSvgContainer.style.display = "block";
+          }
+          break;
+
+        case targetEl.classList.contains("dayTwoweatherLeftSvgContainer"):
+          dayTwoAdditionalInfo.style.display = "none";
+          dayTwoweatherLeftSvgContainer.style.display = "none";
+
+          dayTwoWeatherDetails.style.display = "block";
+
+          if (dayTwoweatherSvgContainer.style.display === "none") {
+            dayTwoweatherSvgContainer.style.display = "block";
+          }
+
+          break;
+
+        case targetEl.classList.contains("dayThreeweatherLeftSvgContainer"):
+          dayThreeAdditionalInfo.style.display = "none";
+          dayThreeweatherLeftSvgContainer.style.display = "none";
+
+          dayThreeWeatherDetails.style.display = "block";
+
+          if (dayThreeweatherSvgContainer.style.display === "none") {
+            dayThreeweatherSvgContainer.style.display = "block";
+          }
+          break;
       }
-
-      break;
-    case targetEl.classList.contains("dayThreeweatherSvgContainer"):
-      dayThreeAdditionalInfo.style.display = "block";
-
-      dayThreeWeatherDetails.style.display = "none";
-      dayThreeweatherSvgContainer.style.display = "none";
-
-      if (dayThreeweatherLeftSvgContainer.style.display = "none") {
-        dayThreeweatherLeftSvgContainer.style.display = "block";
-      }
-
-      break;
-    default:
-      console.log("other element");
+    }
+    dayOneweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
+    dayTwoweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
+    dayThreeweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
   }
-}
-dayOneweatherSvgContainer.addEventListener(
-  "click",
-  displayDayBottomWeatherData
-);
-dayTwoweatherSvgContainer.addEventListener(
-  "click",
-  displayDayBottomWeatherData
-);
-
-dayThreeweatherSvgContainer.addEventListener(
-  "click",
-  displayDayBottomWeatherData
-);
-
-function displayDayRightWeatherData(event) {
-  let targetEl = event.target;
-
-  switch (true) {
-    case targetEl.classList.contains("dayOneweatherLeftSvgContainer"):
-      dayOneAdditionalInfo.style.display = "none";
-      dayTwoAdditionalInfo.style.display = "none";
-
-      dayOneWeatherDetails.style.display = "block";
-      dayTwoWeatherDetails.style.display = "block";
-
-      dayOneweatherLeftSvgContainer.style.display = "none";
-
-      if (dayOneweatherSvgContainer.style.display === "none") {
-        console.log(dayOneAdditionalInfo);
-        dayOneweatherSvgContainer.style.display = "block";
-      }
-      break;
-
-    case targetEl.classList.contains("dayTwoweatherLeftSvgContainer"):
-      dayTwoAdditionalInfo.style.display = "none";
-      dayTwoweatherLeftSvgContainer.style.display = "none";
-
-      dayTwoWeatherDetails.style.display = "block";
-
-      if (dayTwoweatherSvgContainer.style.display === "none") {
-        dayTwoweatherSvgContainer.style.display = "block";
-      }
-
-      break;
-
-    case targetEl.classList.contains("dayThreeweatherLeftSvgContainer"):
-      dayThreeAdditionalInfo.style.display = "none";
-      dayThreeweatherLeftSvgContainer.style.display = "none";
-
-      dayThreeWeatherDetails.style.display = "block";
-
-      if (dayThreeweatherSvgContainer.style.display === "none") {
-        dayThreeweatherSvgContainer.style.display = "block";
-      }
-      break;
-  }
-}
-dayOneweatherLeftSvgContainer.addEventListener(
-  "click",
-  displayDayRightWeatherData
-);
-dayTwoweatherLeftSvgContainer.addEventListener(
-  "click",
-  displayDayRightWeatherData
-);
-dayThreeweatherLeftSvgContainer.addEventListener(
-  "click",
-  displayDayRightWeatherData
-);
-
-
-}
 }
 window.addEventListener("change", handleMediaQuery);
 
