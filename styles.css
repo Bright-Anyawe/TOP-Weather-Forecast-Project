@@ -61,6 +61,19 @@ body::before {
         display: none;
     }
 
+    label.label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    #form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     #currentWeatherData {
         word-break: break-all;
     }
@@ -218,6 +231,9 @@ body::before {
         text-align: center;
     }
 
+    label.label {
+        display: none;
+    }
 
 
     #heroContent #form {
@@ -476,12 +492,22 @@ svg {
     transform: scale(1.05);
 }
 
+.searchBoxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 .headerText {
     font-size: 1.6rem;
     padding: 10px;
     font-weight: 900;
+}
+
+.label {
+    display: none;
 }
 
 .currentWeatherHeader {
