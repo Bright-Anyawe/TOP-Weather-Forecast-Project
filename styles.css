@@ -61,18 +61,7 @@ body::before {
         display: none;
     }
 
-    label.label {
-        display: block;
-        font-size: 1.2rem;
-        font-weight: 700;
-    }
 
-    #form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
 
     #currentWeatherData {
         word-break: break-all;
@@ -172,7 +161,7 @@ body::before {
         top: 9rem;
     }
 
-    .errorTextContainer {
+    div.errorTextContainer {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -201,6 +190,27 @@ body::before {
 }
 
 @media (min-width: 551px) and (max-width: 768px) {
+
+
+    html body {
+
+        position: relative;
+
+    }
+
+    html::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('asset/Images/blue-sky-with-cloud-closeup_150588-122.avif');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
+    }
 
     body main {
         display: flex;
@@ -268,6 +278,21 @@ body::before {
         border-radius: 50%;
     }
 
+    .errorTextContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p.error {
+        color: black;
+        font-weight: 700;
+        font-size: 20px;
+        max-width: 300px;
+        margin: 0;
+        outline: solid;
+        text-align: center;
+    }
 
     main #container {
         display: none;
@@ -278,6 +303,28 @@ body::before {
 }
 
 @media (min-width: 769px) and (max-width: 1000px) {
+
+
+
+    html body {
+
+        position: relative;
+
+    }
+
+    html::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('asset/Images/blue-sky-with-cloud-closeup_150588-122.avif');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: -1;
+    }
 
     body main {
         display: flex;
@@ -343,6 +390,21 @@ body::before {
         border-radius: 50%;
     }
 
+    .errorTextContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p.error {
+        color: black;
+        font-weight: 700;
+        font-size: 20px;
+        max-width: 300px;
+        margin: 0;
+        outline: solid;
+        text-align: center;
+    }
 
     main #container {
         display: none;
@@ -407,8 +469,40 @@ main::before {
 }
 
 
+.Night_RainContainer img {
+    width: 100px;
+    height: auto;
+    position: relative;
+    left: 63rem;
+    top: 50px;
+}
+
+.sunShine img {
+    width: 100px;
+    height: auto;
+    position: relative;
+    left: 63rem;
+    top: 50px;
+}
+
+.halfSun img {
+    width: 100px;
+    height: auto;
+    position: relative;
+    left: 6rem;
+    top: -80px;
+}
+
 #dayOneAdditionalInfo {
     display: block;
+}
+
+.errorMainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 12rem;
 }
 
 #errorContainer {
@@ -416,11 +510,9 @@ main::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 400px;
     height: 200px;
-    position: relative;
-    top: 12rem;
-    left: 12rem;
+
     box-shadow: 0px 7px 10px 3px;
     display: none
 }
@@ -441,6 +533,7 @@ main::before {
     width: 300px;
     margin: 0;
     outline: solid;
+    text-align: center;
 }
 
 .warningContainer svg {
