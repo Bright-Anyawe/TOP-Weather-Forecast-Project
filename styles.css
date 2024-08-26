@@ -80,7 +80,7 @@ body::before {
     }
 
     .svgContent svg, .LeftsvgContent svg {
-        fill: black;
+        fill: white;
     }
 
     #hero #heroContent {
@@ -145,7 +145,7 @@ body::before {
         align-items: center;
         justify-content: center;
         max-width: 300px;
-        height: 200px;
+        height: 230px;
         position: static;
         /* top: 0;
         left: 12rem; */
@@ -278,6 +278,17 @@ body::before {
         border-radius: 50%;
     }
 
+    div#errorContainer {
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 240px;
+        box-shadow: 0px 7px 10px 3px;
+        display: none;
+    }
+
     .errorTextContainer {
         display: flex;
         justify-content: center;
@@ -343,7 +354,7 @@ body::before {
 
     #hero #heroContent {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         color: hwb(0 93% 6%);
     }
@@ -388,6 +399,17 @@ body::before {
 
     #searchLocation:active {
         border-radius: 50%;
+    }
+
+    div#errorContainer {
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 240px;
+        box-shadow: 0px 7px 10px 3px;
+        display: none;
     }
 
     .errorTextContainer {
@@ -458,14 +480,15 @@ main::before {
     align-items: center;
     color: hwb(0 93% 6%);
     gap: 50px;
-    padding-inline: 70px;
+    /* padding-inline: 70px; */
 }
 
 
 #container {
-    background-color: rgb(172 192 192 / 90%);
+    background-color: rgb(79 83 83 / 90%);
     grid-area: 2 / 2 / 8 / 4;
     display: none;
+    color: white;
 }
 
 
@@ -511,10 +534,17 @@ main::before {
     align-items: center;
     justify-content: center;
     width: 400px;
-    height: 200px;
+    height: 240px;
 
-    box-shadow: 0px 7px 10px 3px;
+    box-shadow: 0px 0px 1px 2px;
+    
     display: none
+}
+
+.errorTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .errorCover {
@@ -527,12 +557,11 @@ main::before {
 }
 
 .error {
-    color: black;
+    outline: solid black;
     font-weight: 700;
     font-size: 20px;
     width: 300px;
     margin: 0;
-    outline: solid;
     text-align: center;
 }
 

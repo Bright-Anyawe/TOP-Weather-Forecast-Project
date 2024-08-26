@@ -72,7 +72,6 @@ let alertShown = false;
 async function getLocation() {
   const userLocation = getUserInput();
 
-
   if (userLocation) {
     try {
       const response = await fetch(
@@ -121,11 +120,12 @@ async function getLocation() {
       // )
       // return;
 
-      if (!response.ok && !alertShown ) {
+      if (!response.ok && !alertShown) {
         subContainer.style.display = "none";
-        alert(
-          "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
-        );
+        errorContainer.style.display = "block";
+
+        error.textContent =
+          "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'.";
 
         alertShown = true;
 
@@ -136,22 +136,25 @@ async function getLocation() {
       console.log(locationObj);
 
       return locationObj;
-
     } catch (error) {
       if (!alertShown) {
-        alert("An error occurred. Please try again later.");
-                subContainer.style.display = "none";
+        subContainer.style.display = "none";
+        errorContainer.style.display = "block";
 
+        error.textContent =
+          "An error occurred.Please Check your network connection and try again later.";
         alertShown = true;
       }
     }
   } else if (!alertShown) {
     // if (!alertShown) {
-    alert("Please enter a location.");
+    // alert("Please enter a location.");
     // resetAlert();
     subContainer.style.display = "none";
+    errorContainer.style.display = "block";
 
-    // }
+    error.textContent = "Please enter a location.";
+    //
   }
 }
 
@@ -377,7 +380,7 @@ function getDayOneWeatherCondition() {
     spanEl.textContent = "c";
     dayOneboldTempEl.appendChild(spanEl);
   });
-resetAlert()
+  resetAlert();
 }
 
 function getDayTwoWeatherCondition() {
@@ -537,7 +540,7 @@ function getDayTwoWeatherCondition() {
     spanEl.textContent = "c";
     dayTwoboldTempEl.appendChild(spanEl);
   });
-resetAlert();
+  resetAlert();
 }
 
 // Get third day weather condition information
@@ -693,7 +696,7 @@ function getDayThreeWeatherCondition() {
     spanEl.textContent = "c";
     dayThreeboldTempEl.appendChild(spanEl);
   });
-resetAlert();
+  resetAlert();
 }
 
 const mediaQuery = window.matchMedia("(max-width: 550px)");
