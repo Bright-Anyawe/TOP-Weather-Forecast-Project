@@ -1,11 +1,13 @@
 const container = document.querySelector("#container");
-       const subContainer = document.querySelector('.sub_container')
-       const errorContainer = document.querySelector('#errorContainer')
+const subContainer = document.querySelector(".sub_container");
+const errorContainer = document.querySelector("#errorContainer");
 const error = document.querySelector(".error");
 
 const form = document.querySelector("#form");
 let locationInputField = document.querySelector("#input");
-const currentWeatherText = document.querySelector(".currentWeatherHeaderMainText")
+const currentWeatherText = document.querySelector(
+  ".currentWeatherHeaderMainText"
+);
 const img = document.querySelector("img");
 const gifContainer = document.querySelector("#gifContainer");
 const gifContainer2 = document.querySelector("#gifContainer2");
@@ -24,9 +26,6 @@ const dewPointEl = document.querySelector(".dewPointElNumber");
 
 const windDirTextEl = document.querySelector(".windDirEl");
 const windDirEl = document.querySelector(".windDirNumber");
-
-// const windDirInDegreeTextEl = document.querySelector(".windDirInDegree");
-// const windDirInDegreeEl = document.querySelector(".windDirInDegreeNumber");
 
 const feelLikeTextEl = document.querySelector(".feelLikeEl");
 const feelLikeEl = document.querySelector(".feelLikeElNumber");
@@ -52,13 +51,6 @@ const currentVisibilityEl = document.querySelector(
   ".currentVisibilityElNumber"
 );
 
-// const currentWeatherLastUpdateTextEl = document.querySelector(
-//   ".currentWeatherLastUpdateElNumber"
-// );
-// const currentWeatherLastUpdateEl = document.querySelector(
-//   ".currentWeatherLastUpdateElNumber"
-// );
-
 const currentWeatherPrecipitationTextEl = document.querySelector(
   ".currentWeatherPrecipitationEl"
 );
@@ -68,21 +60,25 @@ const currentWeatherPrecipitationEl = document.querySelector(
 //Get user Input
 function getUserInput() {
   let userInput = locationInputField.value;
+  let captalizeUserInputInitialLetter =
+    userInput.charAt(0).toUpperCase() + userInput.slice(1);
 
-  return userInput;
+  return captalizeUserInputInitialLetter;
 }
 locationInputField.addEventListener("input", getUserInput);
 
 //Get Location current weather condition From Api
+let alertShown = false;
 async function getLocation() {
   const userLocation = getUserInput();
 
   if (userLocation) {
-    // try {
+    try {
       const response = await fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=9a516bc9012848759a5102735242906&q=${userLocation}&days=3`,
         { mode: "cors" }
       );
+      console.log(response);
       // //Get a ReadableStreamDefaultReader to read the response body
       // const reader = response.body.getReader();
 
@@ -118,15 +114,52 @@ async function getLocation() {
       // //Convert data into json object
       // const locationObj = JSON.parse(result);
       // console.log(locationObj);
+
+      // alert(
+      //   "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'."
+      // )
+      // return;
+
+      if (!response.ok && !alertShown) {
+        subContainer.style.display = "none";
+        errorContainer.style.display = "block";
+
+        error.textContent =
+          "Bad request! Please type the correct location name, e.g., 'Tema' or 'London'.";
+
+        alertShown = true;
+
+        return;
+      }
+
       const locationObj = await response.json();
+      console.log(locationObj);
 
       return locationObj;
-    // } catch (err) {
-    //   alert("Check your network!");
-    // }
-  } else {
-    alert("You've not entered any value");
+    } catch (error) {
+      if (!alertShown) {
+        subContainer.style.display = "none";
+        errorContainer.style.display = "block";
+
+        error.textContent =
+          "An error occurred.Please Check your network connection and try again later.";
+        alertShown = true;
+      }
+    }
+  } else if (!alertShown) {
+    // if (!alertShown) {
+    // alert("Please enter a location.");
+    // resetAlert();
+    subContainer.style.display = "none";
+    errorContainer.style.display = "block";
+
+    error.textContent = "Please enter a location.";
+    //
   }
+}
+
+function resetAlert() {
+  alertShown = false;
 }
 
 //Get current weather info
@@ -134,85 +167,79 @@ function getCurrentWeatherConditon() {
   const userLocationInput = getLocation();
   const userInput = getUserInput();
   if (userLocationInput) {
-
     userLocationInput.then((location) => {
-    const country = location.location.country;
-    const locationName = location.location.name;
+      const country = location.location.country;
+      const locationName = location.location.name;
 
-    //Check if userInput location is equal to the locationName return from api
-    if(locationName == userInput ) {
- subContainer.style.display = "block"
-            errorContainer.style.display = 'none'
+      //Check if userInput location is equal to the locationName return from api
+      if (locationName == userInput) {
+        subContainer.style.display = "block";
+        errorContainer.style.display = "none";
 
-     const dewPoint = location.current.dewpoint_c;
-    const temperature = location.current.temp_c;
-    const windDirection = location.current.wind_dir;
-    const feelLikeCondition = location.current.feelslike_c;
-    const weatherIcon = location.current.condition.icon;
-    const weatherIconText = location.current.condition.text;
-    const currentWeatherHumidity = location.current.humidity;
-    const BarometricPressure = location.current.pressure_mb;
-    const currentVisibility = location.current.vis_km;
-    const currentWeatherPrecipitation = location.current.precip_mm;
+        const dewPoint = location.current.dewpoint_c;
+        const temperature = location.current.temp_c;
+        const windDirection = location.current.wind_dir;
+        const feelLikeCondition = location.current.feelslike_c;
+        const weatherIcon = location.current.condition.icon;
+        const weatherIconText = location.current.condition.text;
+        const currentWeatherHumidity = location.current.humidity;
+        const BarometricPressure = location.current.pressure_mb;
+        const currentVisibility = location.current.vis_km;
+        const currentWeatherPrecipitation = location.current.precip_mm;
 
-    //Get current weather data object
-    const currentWeatherObj = location.current;
-    console.log(currentWeatherObj);
-    const spanEl = document.createElement("span");
+        //Get current weather data object
+        const currentWeatherObj = location.current;
+        console.log(currentWeatherObj);
+        const spanEl = document.createElement("span");
 
-    temperatureBoldEl.textContent = `${temperature}°`;
-    spanEl.textContent = "c";
-    temperatureBoldEl.appendChild(spanEl);
+        temperatureBoldEl.textContent = `${temperature}°`;
+        spanEl.textContent = "c";
+        temperatureBoldEl.appendChild(spanEl);
 
-    countryEl.textContent = `${country}-${locationName}:`;
+        countryEl.textContent = `${country}-${locationName}:`;
 
-    dewPointTextEl.textContent = "Dewpoint:";
-    dewPointEl.textContent = `${dewPoint}°c`;
+        dewPointTextEl.textContent = "Dewpoint:";
+        dewPointEl.textContent = `${dewPoint}°c`;
 
-    windDirTextEl.textContent = "Wind direction:";
-    windDirEl.textContent = `${windDirection}°`;
+        windDirTextEl.textContent = "Wind direction:";
+        windDirEl.textContent = `${windDirection}°`;
 
-    feelLikeTextEl.textContent = "Feel Like:";
-    feelLikeEl.textContent = `${feelLikeCondition}°c`;
+        feelLikeTextEl.textContent = "Feel Like:";
+        feelLikeEl.textContent = `${feelLikeCondition}°c`;
 
-    weatherIconEl.src = weatherIcon;
-    weatherIconEl.alt = weatherIconText;
+        weatherIconEl.src = weatherIcon;
+        weatherIconEl.alt = weatherIconText;
 
-    currentWeatherHumidityTextEl.textContent = "Humidity:";
-    currentWeatherHumidityEl.textContent = `${currentWeatherHumidity}%`;
+        currentWeatherHumidityTextEl.textContent = "Humidity:";
+        currentWeatherHumidityEl.textContent = `${currentWeatherHumidity}%`;
 
-    barometricPressureTextEl.textContent = "Barometric_pressure:";
-    barometricPressureEl.textContent = `${BarometricPressure}mb`;
+        barometricPressureTextEl.textContent = "Barometric_pressure:";
+        barometricPressureEl.textContent = `${BarometricPressure}mb`;
 
-    currentVisibilityTextEl.textContent = "Visibility:";
-    currentVisibilityEl.textContent = ` ${currentVisibility}km`;
+        currentVisibilityTextEl.textContent = "Visibility:";
+        currentVisibilityEl.textContent = ` ${currentVisibility}km`;
 
-    currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
-    currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
+        currentWeatherPrecipitationTextEl.textContent = "Precipitation:";
+        currentWeatherPrecipitationEl.textContent = `${currentWeatherPrecipitation}mm`;
 
-      currentWeatherText.textContent = 'Current Weather';
+        currentWeatherText.textContent = "Current Weather";
         // if(container.style.display === "block") {
         //   container.style.display = "none"
         // } else {
-          // }
-           
-      
-    }
-    else {
-       subContainer.style.display = 'none'
-       errorContainer.style.display = "block"
-      //  const error = document.createElement('div');
+        // }
+      } else {
+        subContainer.style.display = "none";
+        errorContainer.style.display = "block";
+        //  const error = document.createElement('div');
 
-       error.textContent = `Location not found!, Enter  valid location name`
+        error.textContent = `Location not found!, Enter  valid location name`;
         //  error.appendChild(error)
+      }
+    });
   }
-  });
-  
-  }
- 
-    }
+}
 
-  function getDayOneWeatherCondition() {
+function getDayOneWeatherCondition() {
   const dayEl = document.querySelector(".day");
   const monthAndYearEl = document.querySelector(".month-year");
 
@@ -353,7 +380,7 @@ function getCurrentWeatherConditon() {
     spanEl.textContent = "c";
     dayOneboldTempEl.appendChild(spanEl);
   });
-
+  resetAlert();
 }
 
 function getDayTwoWeatherCondition() {
@@ -512,8 +539,8 @@ function getDayTwoWeatherCondition() {
     dayTwoboldTempEl.textContent = `${averageTempereture}°`;
     spanEl.textContent = "c";
     dayTwoboldTempEl.appendChild(spanEl);
-
   });
+  resetAlert();
 }
 
 // Get third day weather condition information
@@ -669,39 +696,206 @@ function getDayThreeWeatherCondition() {
     spanEl.textContent = "c";
     dayThreeboldTempEl.appendChild(spanEl);
   });
+  resetAlert();
 }
 
-// function displayCurrentWeatherInfo() {
-//   const country = getLocation().country;
-//   const locationName = getLocation().locationName;
-//   const temperature = getLocation().temperature;
-//   const windDirection = getLocation().windDirection;
-//   const windDirInDegree = getLocation().windDirInDegree;
+const mediaQuery = window.matchMedia("(max-width: 550px)");
 
-//   // const countryEl = document.createElement('p');
-//   // currentWeatherInfo.textContent = `${country}-${locationName}:`;
-//   countryEl.textContent = `${country}-${locationName}:`;
-//   temperatureEl.textContent = ` temp in celsius: ${temperature}°`;
-//   windDirEl.textContent = ` wind direction: ${windDirection}°`;
-//   windDirInDegreeEl.textContent = ` wind direction in degrees celsius: ${windDirInDegree}°`;
-//   feelLikeEl.textContent = `feel like conditon in celsius: ${feelLikeCondition}°`;
-//   weatherIconEl.textContent = `Day condition icon: ${weatherIcon}`;
-//   currentWeatherHumidityEl.textContent = `Daily humidity condition of the weather: ${currentWeatherHumidity}%`;
-//   barometricPressureEl.textContent = `Daily barometric pressure condition of the weather: ${BarometricPressure}mb`;
-//   currentVisibilityEl.textContent = `Daily weather visibility condition in kilometer: ${currentVisibility}km`;
-//   currentWeatherLastUpdateEl.textContent = `Daily weather lastly update condition: ${currentWeatherLastUpdate}`;
-//   currentWeatherPrecipitationEl.textContent = `Daily weather precipitation condition in milimeters: ${currentWeatherPrecipitation}mm`;
+function handleMediaQuery() {
+  if (mediaQuery.matches) {
+    const dayOneWeatherDetails = document.querySelector(
+      "#dayOneWeatherDetails"
+    );
+    const dayTwoWeatherDetails = document.querySelector(
+      "#dayTwoWeatherDetails"
+    );
+    const dayThreeWeatherDetails = document.querySelector(
+      "#dayThreeWeatherDetails"
+    );
+
+    const dayOneweatherSvgContainer = document.querySelector(
+      ".dayOneweatherSvgContainer"
+    );
+    const dayTwoweatherSvgContainer = document.querySelector(
+      ".dayTwoweatherSvgContainer"
+    );
+    const dayThreeweatherSvgContainer = document.querySelector(
+      ".dayThreeweatherSvgContainer"
+    );
+
+    const dayOneAdditionalInfo = document.querySelector(
+      "#dayOneAdditionalInfo"
+    );
+    const dayTwoAdditionalInfo = document.querySelector(
+      "#dayTwoAdditionalInfo"
+    );
+    const dayThreeAdditionalInfo = document.querySelector(
+      "#dayThreeAdditionalInfo"
+    );
+    console.log(dayThreeAdditionalInfo);
+
+    const dayOneweatherLeftSvgContainer = document.querySelector(
+      ".dayOneweatherLeftSvgContainer"
+    );
+    const dayTwoweatherLeftSvgContainer = document.querySelector(
+      ".dayTwoweatherLeftSvgContainer"
+    );
+    const dayThreeweatherLeftSvgContainer = document.querySelector(
+      ".dayThreeweatherLeftSvgContainer"
+    );
+
+    //Display bottom additonal information
+    // const removeAdditionalBottomInfo = () => {
+    //   console.log(dayTwoAdditionalInfo);
+    //   dayOneAdditionalInfo.style.display = "none";
+    //   dayTwoAdditionalInfo.style.display = "none";
+    //   dayThreeAdditionalInfo.style.display = "none";
+
+    //   dayOneweatherLeftSvgContainer.style.display = "none";
+    //   dayTwoweatherLeftSvgContainer.style.display = "none";
+    //   dayThreeweatherLeftSvgContainer.style.display = "none";
+    // };
+    // removeAdditionalBottomInfo();
+
+    function displayDayBottomWeatherData(event) {
+      const targetEl = event.target;
+
+      console.log("Display bottom weather data");
+
+      switch (true) {
+        case targetEl.classList.contains("dayOneweatherSvgContainer"):
+          dayOneAdditionalInfo.style.display = "block";
+          dayOneWeatherDetails.style.display = "none";
+          dayOneweatherSvgContainer.style.display = "none";
+
+          if ((dayOneweatherLeftSvgContainer.style.display = "none")) {
+            dayOneweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+
+        case targetEl.classList.contains("dayTwoweatherSvgContainer"):
+          dayTwoAdditionalInfo.style.display = "block";
+          dayTwoWeatherDetails.style.display = "none";
+          dayTwoweatherSvgContainer.style.display = "none";
+
+          if ((dayTwoweatherLeftSvgContainer.style.display = "none")) {
+            dayTwoweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+        case targetEl.classList.contains("dayThreeweatherSvgContainer"):
+          dayThreeAdditionalInfo.style.display = "block";
+
+          dayThreeWeatherDetails.style.display = "none";
+          dayThreeweatherSvgContainer.style.display = "none";
+
+          if ((dayThreeweatherLeftSvgContainer.style.display = "none")) {
+            dayThreeweatherLeftSvgContainer.style.display = "block";
+          }
+
+          break;
+        default:
+          console.log("other element");
+      }
+    }
+    dayOneweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
+    dayTwoweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
+
+    dayThreeweatherSvgContainer.addEventListener(
+      "click",
+      displayDayBottomWeatherData
+    );
+
+    function displayDayRightWeatherData(event) {
+      let targetEl = event.target;
+
+      switch (true) {
+        case targetEl.classList.contains("dayOneweatherLeftSvgContainer"):
+          dayOneAdditionalInfo.style.display = "none";
+          dayTwoAdditionalInfo.style.display = "none";
+
+          dayOneWeatherDetails.style.display = "block";
+          dayTwoWeatherDetails.style.display = "block";
+
+          dayOneweatherLeftSvgContainer.style.display = "none";
+
+          if (dayOneweatherSvgContainer.style.display === "none") {
+            console.log(dayOneAdditionalInfo);
+            dayOneweatherSvgContainer.style.display = "block";
+          }
+          break;
+
+        case targetEl.classList.contains("dayTwoweatherLeftSvgContainer"):
+          dayTwoAdditionalInfo.style.display = "none";
+          dayTwoweatherLeftSvgContainer.style.display = "none";
+
+          dayTwoWeatherDetails.style.display = "block";
+
+          if (dayTwoweatherSvgContainer.style.display === "none") {
+            dayTwoweatherSvgContainer.style.display = "block";
+          }
+
+          break;
+
+        case targetEl.classList.contains("dayThreeweatherLeftSvgContainer"):
+          dayThreeAdditionalInfo.style.display = "none";
+          dayThreeweatherLeftSvgContainer.style.display = "none";
+
+          dayThreeWeatherDetails.style.display = "block";
+
+          if (dayThreeweatherSvgContainer.style.display === "none") {
+            dayThreeweatherSvgContainer.style.display = "block";
+          }
+          break;
+      }
+    }
+    dayOneweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
+    dayTwoweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
+    dayThreeweatherLeftSvgContainer.addEventListener(
+      "click",
+      displayDayRightWeatherData
+    );
+  }
+}
+window.addEventListener("change", handleMediaQuery);
+
+// function displayDayThreeRightWeatherData() {
+//   dayThreeAdditionalInfo.style.display = "none";
+//   dayThreeweatherLeftSvgContainer.style.display = "none";
+
+//   dayThreeWeatherDetails.style.display = "block";
+
+//   if (dayThreeweatherSvgContainer.style.display === "none") {
+//     dayThreeweatherSvgContainer.style.display = "block";
+//   }
 // }
+// dayThreeweatherLeftSvgContainer.addEventListener(
+//   "click",
+//   displayDayThreeRightWeatherData
+// );
 
 function submitForm(event) {
   event.preventDefault();
   getUserInput();
   getLocation();
-  container.style.display = 'block'
   getCurrentWeatherConditon();
   getDayOneWeatherCondition();
   getDayTwoWeatherCondition();
   getDayThreeWeatherCondition();
+  container.style.display = "block";
   // displayCurrentWeatherInfo();
 
   locationInputField.value = "";
